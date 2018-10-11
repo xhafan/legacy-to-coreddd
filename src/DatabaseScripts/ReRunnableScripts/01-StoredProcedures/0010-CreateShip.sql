@@ -4,8 +4,8 @@ GO
 
 CREATE PROCEDURE CreateShip
 (
-    @shipName nvarchar(max),
-    @tonnage decimal
+    @shipName nvarchar(max)
+    , @tonnage decimal(19,5)
 )
 AS
 BEGIN
@@ -27,11 +27,13 @@ INSERT INTO ShipHistory (
 	ShipId
 	, ShipName
 	, Tonnage
+	, CreatedOn
 	)
 VALUES (
     @shipId
 	, @shipName
 	, @tonnage
+	, getdate()
 	)
 
 select @shipId

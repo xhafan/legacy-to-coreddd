@@ -6,7 +6,7 @@ create table Ship
 (
     ShipId int IDENTITY(1,1) NOT NULL
     , ShipName nvarchar(max)
-	, Tonnage decimal
+	, Tonnage decimal(19,5)
 	CONSTRAINT PK_Ship_ShipId PRIMARY KEY CLUSTERED (ShipId ASC)
 )
 
@@ -19,6 +19,7 @@ create table ShipHistory
     ShipHistoryId int IDENTITY(1,1) NOT NULL
 	, ShipId int
     , ShipName nvarchar(max)
-	, Tonnage decimal
+	, Tonnage decimal(19,5)
+	, CreatedOn datetime
 	CONSTRAINT PK_ShipHistory_ShipHistoryId PRIMARY KEY CLUSTERED (ShipHistoryId ASC)
 )

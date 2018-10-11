@@ -9,8 +9,40 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Button ID="CreateShipButton" runat="server" OnClick="CreateShipButton_Click" Text="Create new ship" ToolTip="Clicking the button will execute a database stored procedure to create a new ship" />            
-            <asp:ListBox ID="GeneratedShipIdsListBox" runat="server"></asp:ListBox>
+            Ship name:
+            <asp:TextBox ID="CreateShipNameTextBox" runat="server"></asp:TextBox>
+            <br />
+            Tonnage:
+            <asp:TextBox ID="CreateTonnageTextBox" runat="server"></asp:TextBox>
+            <br />
+            <asp:Button 
+                ID="CreateShipButton" 
+                runat="server" 
+                OnClick="CreateShipButton_Click" 
+                Text="Create new ship" 
+                ToolTip="Clicking the button will execute a database stored procedure to create a new ship" 
+                />            
+            <hr />
+            Ship Id:
+            <asp:TextBox ID="UpdateShipIdTextBox" runat="server"></asp:TextBox>
+            <br />
+            Ship name:
+            <asp:TextBox ID="UpdateShipNameTextBox" runat="server"></asp:TextBox>
+            <br />
+            Tonnage:
+            <asp:TextBox ID="UpdateTonnageTextBox" runat="server"></asp:TextBox>
+            <br />
+            <asp:Button 
+                ID="UpdateShipButton" 
+                runat="server" 
+                OnClick="UpdateShipButton_OnClickShipButton_Click" 
+                Text="Update ship data" 
+                ToolTip="Clicking the button will execute a database stored procedure to update an existing ship" 
+                />
+            <hr />
+            Existing ships:
+            <br />
+            <asp:ListBox ID="ExistingShipsListBox" runat="server" Width="500" Height="200"></asp:ListBox>
         </div>
     </form>
 </body>
