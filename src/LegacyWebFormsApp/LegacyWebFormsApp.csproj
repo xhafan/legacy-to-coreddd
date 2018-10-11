@@ -39,10 +39,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CoreDdd, Version=3.0.32.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CoreDdd.3.0.32\lib\net40\CoreDdd.dll</HintPath>
+    </Reference>
+    <Reference Include="CoreDdd.Nhibernate, Version=3.0.32.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CoreDdd.Nhibernate.3.0.32\lib\net40\CoreDdd.Nhibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="CoreUtils, Version=3.0.32.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CoreUtils.3.0.32\lib\net40\CoreUtils.dll</HintPath>
+    </Reference>
     <Reference Include="DatabaseBuilder, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DatabaseBuilder.1.0.9\lib\net40\DatabaseBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -70,6 +89,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="hibernate.cfg.xml" />
     <Content Include="ManageShipsLegacyAdoNet.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -77,6 +97,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Ship.cs" />
+    <Compile Include="LegacyWebFormsAppNhibernateConfigurator .cs" />
     <Compile Include="ManageShipsLegacyAdoNet.aspx.cs">
       <DependentUpon>ManageShipsLegacyAdoNet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
