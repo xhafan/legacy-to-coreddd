@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="LegacyWebFormsApp.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageShipsLegacyAdoNet.aspx.cs" Inherits="LegacyWebFormsApp.ManageShipsLegacyAdoNet" %>
 
 <!DOCTYPE html>
 
@@ -21,7 +21,10 @@
                 OnClick="CreateShipButton_Click" 
                 Text="Create new ship" 
                 ToolTip="Clicking the button will execute a database stored procedure to create a new ship" 
-                />            
+                />
+            <br />
+            Last ShipId created:
+            <asp:Label ID="LastShipIdCreatedLabel" runat="server" Text=""></asp:Label>       
             <hr />
             Ship Id:
             <asp:TextBox ID="UpdateShipIdTextBox" runat="server"></asp:TextBox>

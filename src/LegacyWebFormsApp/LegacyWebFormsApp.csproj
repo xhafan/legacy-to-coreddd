@@ -70,19 +70,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Default.aspx" />
+    <Content Include="ManageShipsLegacyAdoNet.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="ManageShipsLegacyAdoNet.aspx.cs">
+      <DependentUpon>ManageShipsLegacyAdoNet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="ManageShipsLegacyAdoNet.aspx.designer.cs">
+      <DependentUpon>ManageShipsLegacyAdoNet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

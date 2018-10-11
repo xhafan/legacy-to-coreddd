@@ -10,7 +10,7 @@
 namespace LegacyWebFormsApp {
     
     
-    public partial class Default {
+    public partial class ManageShipsLegacyAdoNet {
         
         /// <summary>
         /// form1 control.
@@ -47,6 +47,15 @@ namespace LegacyWebFormsApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CreateShipButton;
+        
+        /// <summary>
+        /// LastShipIdCreatedLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LastShipIdCreatedLabel;
         
         /// <summary>
         /// UpdateShipIdTextBox control.
