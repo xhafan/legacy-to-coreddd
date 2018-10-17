@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyWebFormsApp", "Legacy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyWebFormsApp.Tests", "LegacyWebFormsApp.Tests\LegacyWebFormsApp.Tests.csproj", "{4834B073-C9A0-4D2D-8A55-6B4E6D2C049D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyWebFormsApp.PersistenceTests", "LegacyWebFormsApp.PersistenceTests\LegacyWebFormsApp.PersistenceTests.csproj", "{3ED0AA51-BCDF-490B-A0E9-C6C01A723C76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4834B073-C9A0-4D2D-8A55-6B4E6D2C049D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4834B073-C9A0-4D2D-8A55-6B4E6D2C049D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4834B073-C9A0-4D2D-8A55-6B4E6D2C049D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ED0AA51-BCDF-490B-A0E9-C6C01A723C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ED0AA51-BCDF-490B-A0E9-C6C01A723C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ED0AA51-BCDF-490B-A0E9-C6C01A723C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ED0AA51-BCDF-490B-A0E9-C6C01A723C76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
