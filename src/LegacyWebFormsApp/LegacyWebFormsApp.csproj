@@ -39,16 +39,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CoreDdd, Version=3.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CoreDdd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CoreDdd.3.0.33\lib\net40\CoreDdd.dll</HintPath>
     </Reference>
-    <Reference Include="CoreDdd.Nhibernate, Version=3.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CoreDdd.Nhibernate, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CoreDdd.Nhibernate.3.0.33\lib\net40\CoreDdd.Nhibernate.dll</HintPath>
     </Reference>
-    <Reference Include="CoreUtils, Version=3.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CoreUtils, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CoreUtils.3.0.33\lib\net40\CoreUtils.dll</HintPath>
     </Reference>
-    <Reference Include="DatabaseBuilder, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DatabaseBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DatabaseBuilder.1.0.10\lib\net40\DatabaseBuilder.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">

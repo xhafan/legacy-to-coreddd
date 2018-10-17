@@ -34,10 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CoreDdd, Version=3.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CoreDdd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CoreDdd.3.0.33\lib\net40\CoreDdd.dll</HintPath>
     </Reference>
-    <Reference Include="CoreUtils, Version=3.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CoreUtils, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CoreUtils.3.0.33\lib\net40\CoreUtils.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
