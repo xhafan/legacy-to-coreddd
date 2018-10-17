@@ -77,10 +77,22 @@
   <ItemGroup>
     <Compile Include="Domain\Ships\when_persisting_ship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RunOncePerTestRun.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LegacyWebFormsApp\LegacyWebFormsApp.csproj">
+      <Project>{48020F5C-5A0C-41BF-938E-F9ED6B557FA9}</Project>
+      <Name>LegacyWebFormsApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
