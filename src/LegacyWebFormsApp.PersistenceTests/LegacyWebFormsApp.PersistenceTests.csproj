@@ -12,6 +12,7 @@
     <PackageReference Include="CoreDdd.Nhibernate" version="3.0.33" />
     <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.33" />
     <PackageReference Include="CoreUtils" version="3.0.33" />
+    <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
     <PackageReference Include="Npgsql" version="2.2.7" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
@@ -36,6 +37,14 @@
   <ItemGroup>
     <ProjectReference Include="..\LegacyWebFormsApp\LegacyWebFormsApp.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <DatabaseFiles Include="$(SolutionDir)DatabaseScripts/**/*.*" />
+    </ItemGroup>
+    <RemoveDir Directories="$(OutDir)DatabaseScripts" />
+    <Copy SourceFiles="@(DatabaseFiles)" DestinationFolder="$(TargetDir)DatabaseScripts/%(RecursiveDir)" />
+  </Target>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>

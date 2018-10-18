@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Ship.cs" />
+    <Compile Include="Domain\ShipMappingOverrides.cs" />
     <Compile Include="LegacyWebFormsAppNhibernateConfigurator .cs" />
     <Compile Include="ManageShipsLegacyAdoNet.aspx.cs">
       <DependentUpon>ManageShipsLegacyAdoNet.aspx</DependentUpon>

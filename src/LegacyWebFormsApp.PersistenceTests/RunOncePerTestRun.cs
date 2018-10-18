@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Data.Common;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.IO;
+using System.Reflection;
 using CoreDdd.Nhibernate.DatabaseSchemaGenerators;
+using DatabaseBuilder;
 using Npgsql;
 using NUnit.Framework;
 
@@ -24,16 +27,14 @@ namespace LegacyWebFormsApp.PersistenceTests
                 var configuration = nhibernateConfigurator.GetConfiguration();
                 var connectionDriverClass = configuration.Properties["connection.driver_class"];
                 var connectionString = configuration.Properties["connection.connection_string"];
+                var scriptsDirectoryPath = Path.Combine(_GetAssemblyLocation(), "DatabaseScripts");
 
-                using (var connection = _CreateDbConnection(connectionDriverClass, connectionString))
-                {
-                    connection.Open();
-                    new DatabaseSchemaCreator().CreateDatabaseSchema(nhibernateConfigurator, connection);
-                }
+                var builderOfDatabase = new BuilderOfDatabase(() => _CreateDbConnection(connectionDriverClass, connectionString));
+                builderOfDatabase.BuildDatabase(scriptsDirectoryPath);
             }
         }
 
-        private DbConnection _CreateDbConnection(string connectionDriverClass, string connectionString)
+        private IDbConnection _CreateDbConnection(string connectionDriverClass, string connectionString)
         {
             switch (connectionDriverClass)
             {
@@ -46,6 +47,15 @@ namespace LegacyWebFormsApp.PersistenceTests
                 default:
                     throw new Exception("Unsupported NHibernate connection.driver_class");
             }
+        }
+
+        // https://stackoverflow.com/a/283917/379279
+        private string _GetAssemblyLocation()
+        {
+            var codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            var uri = new UriBuilder(codeBase);
+            var path = Uri.UnescapeDataString(uri.Path);
+            return Path.GetDirectoryName(path);
         }
     }
 }
