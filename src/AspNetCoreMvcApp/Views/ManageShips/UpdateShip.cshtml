@@ -1,0 +1,17 @@
+﻿@model AspNetCoreMvcApp.Commands.UpdateShipCommand
+@{
+    ViewData["Title"] = "Update ship";
+}
+
+<form asp-controller="ManageShips" asp-action="UpdateShip" method="post">
+    Ship Id:
+    <input asp-for="ShipId" />
+    <br />
+    Ship Name:
+    <input asp-for="ShipName" />
+    <br />
+    Tonnage:
+    <input asp-for="Tonnage" />
+    <br />
+    <button type="submit" title="Clicking the button will execute a command to update an existing ship">Update ship</button>
+</form>

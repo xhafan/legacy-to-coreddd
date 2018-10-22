@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreDdd" version="3.0.34" />
+    <PackageReference Include="CoreDdd.Nhibernate" version="3.0.34" />
+    <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.34" />
+    <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="Shouldly" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetCoreMvcApp\AspNetCoreMvcApp.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <DatabaseFiles Include="$(SolutionDir)DatabaseScripts/**/*.*" />
+    </ItemGroup>
+    <RemoveDir Directories="$(OutDir)DatabaseScripts" />
+    <Copy SourceFiles="@(DatabaseFiles)" DestinationFolder="$(TargetDir)DatabaseScripts/%(RecursiveDir)" />
+  </Target>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+</Project>

@@ -6,7 +6,7 @@ using System.Threading;
 using DatabaseBuilder;
 using NUnit.Framework;
 
-namespace LegacyWebFormsApp.PersistenceTests
+namespace AspNetCoreMvcApp.PersistenceTests
 {
     [SetUpFixture]
     public class RunOncePerTestRun
@@ -33,7 +33,7 @@ namespace LegacyWebFormsApp.PersistenceTests
 
         private void _CreateDatabase()
         {
-            using (var nhibernateConfigurator = new LegacyWebFormsAppNhibernateConfigurator())
+            using (var nhibernateConfigurator = new AspNetCoreAppNhibernateConfigurator())
             {
                 var configuration = nhibernateConfigurator.GetConfiguration();
                 var connectionString = configuration.Properties["connection.connection_string"];

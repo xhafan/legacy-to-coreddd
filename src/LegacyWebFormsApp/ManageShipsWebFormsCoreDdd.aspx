@@ -20,7 +20,7 @@
                 runat="server" 
                 OnClick="CreateShipButton_Click" 
                 Text="Create new ship" 
-                ToolTip="Clicking the button will execute a database stored procedure to create a new ship" 
+                ToolTip="Clicking the button will execute a command to create a new ship" 
                 />
             <br />
             Last ShipId created:
@@ -40,7 +40,7 @@
                 runat="server" 
                 OnClick="UpdateShipButton_OnClickShipButton_Click" 
                 Text="Update ship data" 
-                ToolTip="Clicking the button will execute a database stored procedure to update an existing ship" 
+                ToolTip="Clicking the button will execute a command to update an existing ship" 
                 />
             <hr />
             Existing ships:

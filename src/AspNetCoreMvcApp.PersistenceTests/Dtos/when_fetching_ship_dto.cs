@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using AspNetCoreMvcApp.Domain;
+using AspNetCoreMvcApp.Dtos;
+using AspNetCoreMvcApp.Queries;
 using CoreDdd.Nhibernate.TestHelpers;
-using LegacyWebFormsApp.Domain;
-using LegacyWebFormsApp.Dtos;
-using LegacyWebFormsApp.Queries;
 using NUnit.Framework;
 using Shouldly;
 
-namespace LegacyWebFormsApp.PersistenceTests.Dtos
+namespace AspNetCoreMvcApp.PersistenceTests.Dtos
 {
     [TestFixture]
     public class when_fetching_ship_dto
@@ -17,9 +18,9 @@ namespace LegacyWebFormsApp.PersistenceTests.Dtos
         private IEnumerable<ShipDto> _shipDtos;
 
         [SetUp]
-        public void Context()
+        public async Task Context()
         {
-            _p = new PersistenceTestHelper(new LegacyWebFormsAppNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new AspNetCoreAppNhibernateConfigurator());
             _p.BeginTransaction();
 
             _newShip = new Ship("ship name", tonnage: 23.4m);
@@ -28,7 +29,7 @@ namespace LegacyWebFormsApp.PersistenceTests.Dtos
 
             var queryHandler = new GetAllShipsQueryHandler(_p.UnitOfWork);
 
-            _shipDtos = queryHandler.Execute<ShipDto>(new GetAllShipsQuery());
+            _shipDtos = await queryHandler.ExecuteAsync<ShipDto>(new GetAllShipsQuery());
         }
 
         [Test]

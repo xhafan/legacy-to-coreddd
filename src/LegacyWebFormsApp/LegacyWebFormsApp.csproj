@@ -157,7 +157,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\GetAllShipsQuery.cs" />
-    <Compile Include="Queries\GetAllShipsQueryQueryHandler.cs" />
+    <Compile Include="Queries\GetAllShipsQueryHandler.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

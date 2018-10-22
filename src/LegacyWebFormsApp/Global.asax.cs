@@ -74,7 +74,7 @@ namespace LegacyWebFormsApp
             // register query handlers
             _windsorContainer.Register(
                 Classes
-                    .FromAssemblyContaining<GetAllShipsQueryQueryHandler>()
+                    .FromAssemblyContaining<GetAllShipsQueryHandler>()
                     .BasedOn(typeof(IQueryHandler<>))
                     .WithService.FirstInterface()
                     .Configure(x => x.LifestyleTransient())

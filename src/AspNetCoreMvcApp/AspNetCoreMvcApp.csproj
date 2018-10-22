@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="hibernate.cfg.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreDdd" Version="3.0.34" />
+    <PackageReference Include="CoreDdd.AspNetCore" Version="3.0.34" />
+    <PackageReference Include="CoreDdd.Nhibernate" Version="3.0.34" />
+    <PackageReference Include="CoreDdd.Nhibernate.Register.DependencyInjection" Version="3.0.34" />
+    <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.0.34" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="NHibernateProfiler.Appender" Version="5.0.5031" />
+    <PackageReference Include="Scrutor" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\ManageShips\UpdateShip.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\ManageShips\CreateNewShip.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+</Project>

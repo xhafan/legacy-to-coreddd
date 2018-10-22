@@ -5,9 +5,9 @@ using NHibernate;
 
 namespace LegacyWebFormsApp.Queries
 {
-    public class GetAllShipsQueryQueryHandler : BaseQueryOverHandler<GetAllShipsQuery>
+    public class GetAllShipsQueryHandler : BaseQueryOverHandler<GetAllShipsQuery>
     {
-        public GetAllShipsQueryQueryHandler(NhibernateUnitOfWork unitOfWork)
+        public GetAllShipsQueryHandler(NhibernateUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
         }
