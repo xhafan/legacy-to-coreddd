@@ -11,21 +11,9 @@
     <PackageReference Include="CoreDdd" version="3.0.33" />
     <PackageReference Include="CoreDdd.Nhibernate" version="3.0.33" />
     <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.33" />
-    <PackageReference Include="CoreUtils" version="3.0.33" />
     <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
-    <PackageReference Include="Npgsql" version="2.2.7" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.108" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="hibernate.cfg.xml.postgresql" />
-    <None Remove="hibernate.cfg.xml.sqlite" />
-    <None Remove="hibernate.cfg.xml.sqlserver" />
-    <None Remove="set_postgresql_db.bat" />
-    <None Remove="set_sqlite_db.bat" />
-    <None Remove="set_sql_server_db.bat" />
   </ItemGroup>
 
   <ItemGroup>
