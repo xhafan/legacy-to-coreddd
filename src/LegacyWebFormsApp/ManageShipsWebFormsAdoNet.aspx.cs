@@ -5,11 +5,14 @@ using System.Web.UI;
 
 namespace LegacyWebFormsApp
 {
-    public partial class ManageShipsLegacyAdoNet : Page
+    public partial class ManageShipsWebFormsAdoNet : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            _LoadShips();
+            if (!IsPostBack)
+            {
+                _LoadShips();
+            }
         }
 
         protected void CreateShipButton_Click(object sender, EventArgs e)
@@ -23,7 +26,8 @@ namespace LegacyWebFormsApp
                 var shipId = (int)cmd.ExecuteScalar();
                 LastShipIdCreatedLabel.Text = $"{shipId}";
             });
-            _LoadShips();
+
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void UpdateShipButton_OnClickShipButton_Click(object sender, EventArgs e)
@@ -37,7 +41,8 @@ namespace LegacyWebFormsApp
                 cmd.CommandText = $"EXEC UpdateShip {shipId}, '{shipName}', {tonnage}";
                 cmd.ExecuteNonQuery();
             });
-            _LoadShips();
+
+            Response.Redirect(Request.RawUrl);
         }
 
         private void _ExecuteSqlCommand(Action<SqlCommand> commandAction)

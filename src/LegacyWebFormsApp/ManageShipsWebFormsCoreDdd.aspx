@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageShipsLegacyAdoNet.aspx.cs" Inherits="LegacyWebFormsApp.ManageShipsLegacyAdoNet" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageShipsWebFormsCoreDdd.aspx.cs" Inherits="LegacyWebFormsApp.ManageShipsWebFormsCoreDdd" %>
 
 <!DOCTYPE html>
 

@@ -10,7 +10,8 @@
 namespace LegacyWebFormsApp {
     
     
-    public partial class ManageShipsLegacyAdoNet {
+    public partial class ManageShipsWebFormsCoreDdd
+    {
         
         /// <summary>
         /// form1 control.
