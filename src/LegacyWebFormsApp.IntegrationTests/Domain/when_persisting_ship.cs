@@ -3,7 +3,7 @@ using LegacyWebFormsApp.Domain;
 using NUnit.Framework;
 using Shouldly;
 
-namespace LegacyWebFormsApp.PersistenceTests.Domain
+namespace LegacyWebFormsApp.IntegrationTests.Domain
 {
     [TestFixture]
     public class when_persisting_ship

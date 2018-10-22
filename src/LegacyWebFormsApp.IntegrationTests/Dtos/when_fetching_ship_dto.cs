@@ -7,7 +7,7 @@ using LegacyWebFormsApp.Queries;
 using NUnit.Framework;
 using Shouldly;
 
-namespace LegacyWebFormsApp.PersistenceTests.Dtos
+namespace LegacyWebFormsApp.IntegrationTests.Dtos
 {
     [TestFixture]
     public class when_fetching_ship_dto

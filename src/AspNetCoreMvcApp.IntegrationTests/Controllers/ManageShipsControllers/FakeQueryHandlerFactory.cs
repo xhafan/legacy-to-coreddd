@@ -3,7 +3,7 @@ using AspNetCoreMvcApp.Queries;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.Queries;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
+namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
     public class FakeQueryHandlerFactory : IQueryHandlerFactory
     {

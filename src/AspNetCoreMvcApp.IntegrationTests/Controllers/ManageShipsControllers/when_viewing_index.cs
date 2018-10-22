@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using Shouldly;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
+namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
     [TestFixture]
     public class when_viewing_index

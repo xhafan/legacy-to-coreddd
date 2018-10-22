@@ -5,7 +5,7 @@ using CoreDdd.Commands;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
+namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
     public class FakeCommandHandlerFactory : ICommandHandlerFactory
     {

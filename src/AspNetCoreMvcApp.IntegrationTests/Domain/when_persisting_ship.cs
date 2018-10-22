@@ -3,7 +3,7 @@ using CoreDdd.Nhibernate.TestHelpers;
 using NUnit.Framework;
 using Shouldly;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Domain
+namespace AspNetCoreMvcApp.IntegrationTests.Domain
 {
     [TestFixture]
     public class when_persisting_ship

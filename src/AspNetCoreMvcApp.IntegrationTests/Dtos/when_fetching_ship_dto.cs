@@ -8,7 +8,7 @@ using CoreDdd.Nhibernate.TestHelpers;
 using NUnit.Framework;
 using Shouldly;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Dtos
+namespace AspNetCoreMvcApp.IntegrationTests.Dtos
 {
     [TestFixture]
     public class when_fetching_ship_dto

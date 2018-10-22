@@ -6,7 +6,7 @@ using CoreDdd.Nhibernate.TestHelpers;
 using NUnit.Framework;
 using Shouldly;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Commands
+namespace AspNetCoreMvcApp.IntegrationTests.Commands
 {
     [TestFixture]
     public class when_creating_new_ship

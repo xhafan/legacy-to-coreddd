@@ -3,7 +3,7 @@ using CoreDdd.Commands;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.Queries;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
+namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
     public class ManageShipsControllerBuilder
     {

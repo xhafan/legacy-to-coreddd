@@ -5,7 +5,7 @@ using LegacyWebFormsApp.Domain;
 using NUnit.Framework;
 using Shouldly;
 
-namespace LegacyWebFormsApp.PersistenceTests.Commands
+namespace LegacyWebFormsApp.IntegrationTests.Commands
 {
     [TestFixture]
     public class when_updating_new_ship

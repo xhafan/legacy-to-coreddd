@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using Shouldly;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
+namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
     [TestFixture]
-    public class when_viewing_update_ship
+    public class when_viewing_create_new_ship
     {
         private PersistenceTestHelper _p;
         private IActionResult _actionResult;
@@ -19,7 +19,7 @@ namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
 
             var manageShipsController = new ManageShipsControllerBuilder(_p.UnitOfWork).Build();
 
-            _actionResult = manageShipsController.UpdateShip();
+            _actionResult = manageShipsController.CreateNewShip();
         }
 
         [Test]

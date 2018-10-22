@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using Shouldly;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
+namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
     [TestFixture]
-    public class when_creating_new_ship
+    public class when_updating_ship
     {
         private PersistenceTestHelper _p;
         private IActionResult _actionResult;
-        private int _shipCountBefore;
+        private Ship _newShip;
 
         [SetUp]
         public async Task Context()
@@ -21,16 +21,18 @@ namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
             _p = new PersistenceTestHelper(new AspNetCoreAppNhibernateConfigurator());
             _p.BeginTransaction();
 
-            _shipCountBefore = _GetShipCount();
+            _newShip = new Ship("ship name", tonnage: 23.4m);
+            _p.Save(_newShip);
 
             var manageShipsController = new ManageShipsControllerBuilder(_p.UnitOfWork).Build();
 
-            var createNewShipCommand = new CreateNewShipCommand
+            var updateShipCommand = new UpdateShipCommand
             {
-                ShipName = "ship name",
-                Tonnage =  23.4m
+                ShipId = _newShip.Id,
+                ShipName = "updated ship name",
+                Tonnage =  34.5m
             };
-            _actionResult = await manageShipsController.CreateNewShip(createNewShipCommand);
+            _actionResult = await manageShipsController.UpdateShip(updateShipCommand);
 
             _p.Flush();
         }
@@ -45,20 +47,16 @@ namespace AspNetCoreMvcApp.PersistenceTests.Controllers.ManageShipsControllers
         }
 
         [Test]
-        public void new_ship_is_created()
+        public void ship_is_updated()
         {
-            _GetShipCount().ShouldBe(_shipCountBefore + 1);
+            var updatedShip = _p.UnitOfWork.Session.Get<Ship>(_newShip.Id);
+            updatedShip.Name.ShouldBe("updated ship name");
         }
 
         [TearDown]
         public void TearDown()
         {
             _p.Rollback();
-        }
-
-        private int _GetShipCount()
-        {
-            return _p.UnitOfWork.Session.QueryOver<Ship>().RowCount();
         }
     }
 }

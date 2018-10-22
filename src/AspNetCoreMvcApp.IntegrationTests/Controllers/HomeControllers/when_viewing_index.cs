@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using Shouldly;
 
-namespace AspNetCoreMvcApp.PersistenceTests.Controllers.HomeControllers
+namespace AspNetCoreMvcApp.IntegrationTests.Controllers.HomeControllers
 {
     [TestFixture]
     public class when_viewing_index
