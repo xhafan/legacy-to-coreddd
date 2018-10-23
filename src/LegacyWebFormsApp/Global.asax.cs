@@ -39,7 +39,7 @@ namespace LegacyWebFormsApp
         private void _BuildDatabase()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["Legacy"].ConnectionString;
-            var scriptsDirectoryPath = Path.Combine(_GetAssemblyLocation(), @"..\..\DatabaseScripts");
+            var scriptsDirectoryPath = Path.Combine(_GetAssemblyCodeBaseLocation(), @"..\..\DatabaseScripts");
             var builderOfDatabase = new BuilderOfDatabase(() => new SqlConnection(connectionString));
             builderOfDatabase.BuildDatabase(scriptsDirectoryPath);
         }
@@ -84,7 +84,7 @@ namespace LegacyWebFormsApp
         }
 
         // https://stackoverflow.com/a/283917/379279
-        private string _GetAssemblyLocation()
+        private string _GetAssemblyCodeBaseLocation()
         {
             var codeBase = Assembly.GetExecutingAssembly().CodeBase;
             var uri = new UriBuilder(codeBase);

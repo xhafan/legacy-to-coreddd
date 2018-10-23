@@ -20,6 +20,7 @@
     <PackageReference Include="CoreDdd.Nhibernate" Version="3.0.34" />
     <PackageReference Include="CoreDdd.Nhibernate.Register.DependencyInjection" Version="3.0.34" />
     <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.0.34" />
+    <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="NHibernateProfiler.Appender" Version="5.0.5031" />
@@ -34,5 +35,13 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <ItemGroup>
+      <DatabaseFiles Include="$(SolutionDir)DatabaseScripts/**/*.*" />
+    </ItemGroup>
+    <RemoveDir Directories="$(OutDir)DatabaseScripts" />
+    <Copy SourceFiles="@(DatabaseFiles)" DestinationFolder="$(TargetDir)DatabaseScripts/%(RecursiveDir)" />
+  </Target>
 
 </Project>
