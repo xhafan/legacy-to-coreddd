@@ -7,7 +7,6 @@ using AspNetCoreMvcApp.Domain;
 using CoreDdd.AspNetCore.Middleware;
 using CoreDdd.Commands;
 using CoreDdd.Nhibernate.Configurations;
-using CoreDdd.Nhibernate.DatabaseSchemaGenerators;
 using CoreDdd.Nhibernate.Register.DependencyInjection;
 using CoreDdd.Queries;
 using CoreDdd.Register.DependencyInjection;
