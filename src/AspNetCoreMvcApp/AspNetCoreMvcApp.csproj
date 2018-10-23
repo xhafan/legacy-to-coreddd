@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreDdd" Version="3.0.34" />
-    <PackageReference Include="CoreDdd.AspNetCore" Version="3.0.34" />
-    <PackageReference Include="CoreDdd.Nhibernate" Version="3.0.34" />
-    <PackageReference Include="CoreDdd.Nhibernate.Register.DependencyInjection" Version="3.0.34" />
-    <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.0.34" />
+    <PackageReference Include="CoreDdd" Version="3.0.35" />
+    <PackageReference Include="CoreDdd.AspNetCore" Version="3.0.35" />
+    <PackageReference Include="CoreDdd.Nhibernate" Version="3.0.35" />
+    <PackageReference Include="CoreDdd.Nhibernate.Register.DependencyInjection" Version="3.0.35" />
+    <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.0.35" />
     <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
