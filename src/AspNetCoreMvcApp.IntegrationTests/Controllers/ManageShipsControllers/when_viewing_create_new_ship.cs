@@ -1,4 +1,5 @@
-﻿using CoreDdd.Nhibernate.TestHelpers;
+﻿using AspNetCoreMvcApp.Controllers;
+using CoreDdd.Nhibernate.TestHelpers;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using Shouldly;
@@ -19,13 +20,22 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 
             var manageShipsController = new ManageShipsControllerBuilder(_p.UnitOfWork).Build();
 
-            _actionResult = manageShipsController.CreateNewShip();
+            _actionResult = manageShipsController.CreateNewShip(lastCreatedShipId: 23);
         }
 
         [Test]
         public void action_result_is_view_result()
         {
             _actionResult.ShouldBeOfType<ViewResult>();
+        }
+
+        [Test]
+        public void view_model_is_last_ship_id()
+        {
+            var viewResult = (ViewResult)_actionResult;
+            viewResult.Model.ShouldBeOfType<CreateNewShipViewModel>();
+            var createNewShipViewModel = (CreateNewShipViewModel)viewResult.Model;
+            createNewShipViewModel.LastCreatedShipId.ShouldBe(23);
         }
 
         [TearDown]

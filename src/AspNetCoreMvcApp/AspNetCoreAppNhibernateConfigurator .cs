@@ -11,12 +11,12 @@ namespace AspNetCoreMvcApp
 {
     public class AspNetCoreAppNhibernateConfigurator : NhibernateConfigurator
     {
-#if DEBUG
         public AspNetCoreAppNhibernateConfigurator()
         {
+#if DEBUG
             NHibernateProfiler.Initialize();
-        }
 #endif
+        }
 
         protected override Assembly[] GetAssembliesToMap()
         {

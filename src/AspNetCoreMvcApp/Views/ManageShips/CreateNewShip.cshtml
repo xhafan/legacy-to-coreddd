@@ -1,16 +1,18 @@
-﻿@model AspNetCoreMvcApp.Commands.CreateNewShipCommand
+﻿@model AspNetCoreMvcApp.Controllers.CreateNewShipViewModel
 @{
     ViewData["Title"] = "Create new ship";
 }
 
 <form asp-controller="ManageShips" asp-action="CreateNewShip" method="post">
     Ship Name:
-    <input asp-for="ShipName" />
+    <input asp-for="CreateNewShipCommand.ShipName" />
     <br />
     Tonnage:
-    <input asp-for="Tonnage" />
+    <input asp-for="CreateNewShipCommand.Tonnage" />
     <br />
     <button type="submit" title="Clicking the button will execute a command to create a new ship">Create new ship</button>
     <br />
-    Last ShipId created: TODO
+    Last ShipId created: @Model.LastCreatedShipId
 </form>
+<br />
+<a asp-action="Index">Back to the list of ships</a>

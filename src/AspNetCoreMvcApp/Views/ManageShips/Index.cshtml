@@ -3,16 +3,16 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+<br />
+<a asp-controller="ManageShips" asp-action="CreateNewShip">Create new ship</a>
+<br />
+<a asp-controller="ManageShips" asp-action="UpdateShip">Update ship</a>
+<br />
 Existing ships:
 <br />
 <select multiple="multiple" width="500" height="200" size="10">
     @foreach (var shipDto in Model)
     {
-    <option>Id: @shipDto.Id, Name: @shipDto.Name, Tonnage: @shipDto.Tonnage"</option>
+        <option>Id: @shipDto.Id, Name: @shipDto.Name, Tonnage: @shipDto.Tonnage"</option>
     }
 </select>
-<br />
-<a asp-controller="ManageShips" asp-action="CreateNewShip">Create new ship</a>
-<br />
-<a asp-controller="ManageShips" asp-action="UpdateShip">Update ship</a>
