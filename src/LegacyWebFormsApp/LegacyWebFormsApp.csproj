@@ -135,6 +135,8 @@
     <Compile Include="Commands\UpdateShipCommand.cs" />
     <Compile Include="Commands\UpdateShipCommandHandler.cs" />
     <Compile Include="Domain\Ship.cs" />
+    <Compile Include="Domain\ShipHistory.cs" />
+    <Compile Include="Domain\ShipHistoryMappingOverrides.cs" />
     <Compile Include="Domain\ShipMappingOverrides.cs" />
     <Compile Include="Dtos\ShipDto.cs" />
     <Compile Include="LegacyWebFormsAppNhibernateConfigurator .cs" />
