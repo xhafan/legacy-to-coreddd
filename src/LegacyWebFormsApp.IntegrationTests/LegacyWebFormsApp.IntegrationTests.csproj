@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreDdd" version="3.0.35" />
-    <PackageReference Include="CoreDdd.Nhibernate" version="3.0.35" />
-    <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.35" />
+    <PackageReference Include="CoreDdd" version="3.0.34" />
+    <PackageReference Include="CoreDdd.Nhibernate" version="3.0.34" />
+    <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.34" />
     <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
