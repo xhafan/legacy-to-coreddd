@@ -68,5 +68,11 @@ namespace LegacyWebFormsApp
                 ExistingShipsListBox.Items.Add($"Id: {shipDto.Id}, Name: {shipDto.Name}, Tonnage: {shipDto.Tonnage}");
             }
         }
+
+        protected void Page_Unload(object sender, EventArgs e)
+        {
+            IoC.Release(_commandExecutor);
+            IoC.Release(_queryExecutor);
+        }
     }
 }
