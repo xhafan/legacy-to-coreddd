@@ -119,48 +119,82 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WebFormsAdoNet\CreateShip.aspx" />
+    <Content Include="WebFormsAdoNet\ListShips.aspx" />
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ManageShipsWebFormsCoreDdd.aspx" />
-    <Content Include="ManageShipsWebFormsAdoNet.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="WebFormsAdoNet\UpdateShip.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="WebFormsCoreDdd\CreateShip.aspx" />
+    <Content Include="WebFormsCoreDdd\ListShips.aspx" />
+    <Content Include="WebFormsCoreDdd\UpdateShip.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CreateNewShipCommand.cs" />
     <Compile Include="Commands\CreateNewShipCommandHandler.cs" />
     <Compile Include="Commands\UpdateShipCommand.cs" />
     <Compile Include="Commands\UpdateShipCommandHandler.cs" />
+    <Compile Include="WebFormsAdoNet\CreateShip.aspx.cs">
+      <DependentUpon>CreateShip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormsAdoNet\CreateShip.aspx.designer.cs">
+      <DependentUpon>CreateShip.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Ship.cs" />
     <Compile Include="Domain\ShipHistory.cs" />
     <Compile Include="Domain\ShipHistoryMappingOverrides.cs" />
     <Compile Include="Domain\ShipMappingOverrides.cs" />
     <Compile Include="Dtos\ShipDto.cs" />
+    <Compile Include="WebFormsAdoNet\ListShips.aspx.cs">
+      <DependentUpon>ListShips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormsAdoNet\ListShips.aspx.designer.cs">
+      <DependentUpon>ListShips.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LegacyWebFormsAppNhibernateConfigurator .cs" />
-    <Compile Include="ManageShipsWebFormsCoreDdd.aspx.cs">
-      <DependentUpon>ManageShipsWebFormsCoreDdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageShipsWebFormsCoreDdd.aspx.designer.cs">
-      <DependentUpon>ManageShipsWebFormsCoreDdd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManageShipsWebFormsAdoNet.aspx.cs">
-      <DependentUpon>ManageShipsWebFormsAdoNet.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageShipsWebFormsAdoNet.aspx.designer.cs">
-      <DependentUpon>ManageShipsWebFormsAdoNet.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\GetAllShipsQuery.cs" />
     <Compile Include="Queries\GetAllShipsQueryHandler.cs" />
+    <Compile Include="WebFormsAdoNet\SqlCommandExecutor.cs" />
+    <Compile Include="WebFormsAdoNet\UpdateShip.aspx.cs">
+      <DependentUpon>UpdateShip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormsAdoNet\UpdateShip.aspx.designer.cs">
+      <DependentUpon>UpdateShip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebFormsCoreDdd\CreateShip.aspx.cs">
+      <DependentUpon>CreateShip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormsCoreDdd\CreateShip.aspx.designer.cs">
+      <DependentUpon>CreateShip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebFormsCoreDdd\ListShips.aspx.cs">
+      <DependentUpon>ListShips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormsCoreDdd\ListShips.aspx.designer.cs">
+      <DependentUpon>ListShips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebFormsCoreDdd\UpdateShip.aspx.cs">
+      <DependentUpon>UpdateShip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormsCoreDdd\UpdateShip.aspx.designer.cs">
+      <DependentUpon>UpdateShip.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
