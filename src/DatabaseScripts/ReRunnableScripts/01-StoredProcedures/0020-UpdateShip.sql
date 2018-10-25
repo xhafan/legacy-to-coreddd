@@ -17,16 +17,16 @@ update Ship set
 where ShipId = @shipId
 	
 INSERT INTO ShipHistory (
-	ShipId
-	, ShipName
-	, Tonnage
-	, CreatedOn
-	)
+    ShipId
+    , ShipName
+    , Tonnage
+    , CreatedOn
+    )
 VALUES (
     @shipId
-	, @shipName
-	, @tonnage
-	, getdate()
-	)
+    , @shipName
+    , @tonnage
+    , getdate()
+    )
 
 END

@@ -13,28 +13,28 @@ BEGIN
 declare @shipId int
 
 INSERT INTO Ship (
-	ShipName
-	, Tonnage
-	)
+    ShipName
+    , Tonnage
+    )
 VALUES (
-	@shipName
-	, @tonnage
-	)
+    @shipName
+    , @tonnage
+    )
 	
 SELECT @shipId = SCOPE_IDENTITY()
 
 INSERT INTO ShipHistory (
-	ShipId
-	, ShipName
-	, Tonnage
-	, CreatedOn
-	)
+    ShipId
+    , ShipName
+    , Tonnage
+    , CreatedOn
+    )
 VALUES (
     @shipId
-	, @shipName
-	, @tonnage
-	, getdate()
-	)
+    , @shipName
+    , @tonnage
+    , getdate()
+    )
 
 select @shipId
 
