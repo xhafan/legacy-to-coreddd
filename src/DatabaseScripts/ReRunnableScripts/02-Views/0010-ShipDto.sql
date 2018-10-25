@@ -5,7 +5,7 @@ GO
 create view ShipDto
 as
 select 
-	ShipId      as Id
-	, ShipName  as Name
-	, Tonnage
+    ShipId      as Id
+    , ShipName  as Name
+    , Tonnage
 from Ship
