@@ -25,15 +25,10 @@ namespace AspNetCoreMvcApp.Tests.Domain.Ships
         }
 
         [Test]
-        public void ship_history_record_is_created()
+        public void ship_history_record_is_created_and_its_data_are_populated()
         {
-            _ship.ShipHistories.Count().ShouldBe(1);
-        }
-
-        [Test]
-        public void ship_history_record_data_are_populated()
-        {
-            var shipHistory = _ship.ShipHistories.Single();
+            var shipHistory = _ship.ShipHistories.SingleOrDefault();
+            shipHistory.ShouldNotBeNull();
             shipHistory.Ship.ShouldBe(_ship);
             shipHistory.Name.ShouldBe("ship name");
             shipHistory.Tonnage.ShouldBe(23.4m);

@@ -24,7 +24,8 @@
             />
             <br />
             Last ShipId created:
-            <asp:Label ID="LastShipIdCreatedLabel" runat="server" Text=""></asp:Label>            </div>
+            <asp:Label ID="LastShipIdCreatedLabel" runat="server" Text=""></asp:Label>
+        </div>
     </form>
     <a href="ListShips.aspx">Back to the list of ships</a>
 </body>

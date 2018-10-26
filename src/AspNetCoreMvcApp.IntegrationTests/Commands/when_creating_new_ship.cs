@@ -36,14 +36,9 @@ namespace AspNetCoreMvcApp.IntegrationTests.Commands
         }
 
         [Test]
-        public void ship_can_be_retrieved()
+        public void ship_can_be_retrieved_and_data_are_persisted_correctly()
         {
             _persistedShip.ShouldNotBeNull();
-        }
-
-        [Test]
-        public void ship_data_are_persisted_correctly()
-        {
             _persistedShip.Name.ShouldBe("ship name");
             _persistedShip.Tonnage.ShouldBe(23.45678m);
         }
