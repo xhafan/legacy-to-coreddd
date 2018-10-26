@@ -3,11 +3,10 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using CoreDddShared;
 using DatabaseBuilder;
 using NUnit.Framework;
 
-namespace AspNetCoreMvcApp.IntegrationTests
+namespace CoreDddShared.IntegrationTests
 {
     [SetUpFixture]
     public class RunOncePerTestRun

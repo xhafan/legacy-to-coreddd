@@ -1,5 +1,6 @@
 ﻿using AspNetCoreMvcApp.Controllers;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDddShared;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using Shouldly;
@@ -15,7 +16,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new AspNetCoreAppNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
             _p.BeginTransaction();
 
             var manageShipsController = new ManageShipsControllerBuilder(_p.UnitOfWork).Build();

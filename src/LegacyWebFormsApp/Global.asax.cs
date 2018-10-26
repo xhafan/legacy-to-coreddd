@@ -18,11 +18,12 @@ using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Queries;
 using CoreDdd.Register.Castle;
 using CoreDdd.UnitOfWorks;
+using CoreDddShared;
+using CoreDddShared.Commands;
+using CoreDddShared.Queries;
 using CoreIoC;
 using CoreIoC.Castle;
 using DatabaseBuilder;
-using LegacyWebFormsApp.Commands;
-using LegacyWebFormsApp.Queries;
 
 namespace LegacyWebFormsApp
 {
@@ -57,7 +58,7 @@ namespace LegacyWebFormsApp
             _windsorContainer.Register(
                 Component
                     .For<INhibernateConfigurator>()
-                    .ImplementedBy<LegacyWebFormsAppNhibernateConfigurator>()
+                    .ImplementedBy<CoreDddSharedNhibernateConfigurator>()
                     .LifestyleSingleton()
             );
             UnitOfWorkHttpModule.Initialize(_windsorContainer.Resolve<IUnitOfWorkFactory>());

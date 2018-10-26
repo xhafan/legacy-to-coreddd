@@ -1,4 +1,4 @@
-﻿using AspNetCoreMvcApp.Commands;
+﻿using CoreDddShared.Commands;
 
 namespace AspNetCoreMvcApp.Controllers
 {

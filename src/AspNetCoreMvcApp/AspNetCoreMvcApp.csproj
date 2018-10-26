@@ -22,9 +22,11 @@
     <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.0.34" />
     <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="NHibernateProfiler.Appender" Version="5.0.5031" />
     <PackageReference Include="Scrutor" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDddShared\CoreDddShared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

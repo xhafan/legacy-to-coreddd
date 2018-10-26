@@ -1,8 +1,8 @@
 ﻿using System;
 using CoreDdd.Queries;
+using CoreDddShared.Dtos;
+using CoreDddShared.Queries;
 using CoreIoC;
-using LegacyWebFormsApp.Dtos;
-using LegacyWebFormsApp.Queries;
 
 namespace LegacyWebFormsApp.WebFormsCoreDdd
 {

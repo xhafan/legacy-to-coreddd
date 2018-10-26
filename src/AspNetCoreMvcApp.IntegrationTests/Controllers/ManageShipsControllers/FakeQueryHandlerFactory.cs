@@ -1,7 +1,7 @@
 ﻿using System;
-using AspNetCoreMvcApp.Queries;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.Queries;
+using CoreDddShared.Queries;
 
 namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using CoreDdd.Commands;
+using CoreDddShared.Commands;
 using CoreIoC;
-using LegacyWebFormsApp.Commands;
 
 namespace LegacyWebFormsApp.WebFormsCoreDdd
 {

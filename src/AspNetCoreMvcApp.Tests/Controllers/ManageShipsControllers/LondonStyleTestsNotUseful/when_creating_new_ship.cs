@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AspNetCoreMvcApp.Commands;
 using AspNetCoreMvcApp.Controllers;
 using CoreDdd.Commands;
 using CoreDdd.Queries;
+using CoreDddShared.Commands;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;

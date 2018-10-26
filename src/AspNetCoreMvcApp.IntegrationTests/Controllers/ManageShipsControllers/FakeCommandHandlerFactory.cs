@@ -1,9 +1,9 @@
 ﻿using System;
-using AspNetCoreMvcApp.Commands;
-using AspNetCoreMvcApp.Domain;
 using CoreDdd.Commands;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.UnitOfWorks;
+using CoreDddShared.Commands;
+using CoreDddShared.Domain;
 
 namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {

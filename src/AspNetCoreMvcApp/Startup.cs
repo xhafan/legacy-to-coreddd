@@ -3,13 +3,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
-using AspNetCoreMvcApp.Domain;
 using CoreDdd.AspNetCore.Middleware;
 using CoreDdd.Commands;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.DependencyInjection;
 using CoreDdd.Queries;
 using CoreDdd.Register.DependencyInjection;
+using CoreDddShared;
+using CoreDddShared.Domain;
 using DatabaseBuilder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +44,7 @@ namespace AspNetCoreMvcApp
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddCoreDdd();
-            services.AddCoreDddNhibernate<AspNetCoreAppNhibernateConfigurator>();
+            services.AddCoreDddNhibernate<CoreDddSharedNhibernateConfigurator>();
 
             // register command handlers, query handlers
             services.Scan(scan => scan

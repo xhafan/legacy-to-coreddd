@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using AspNetCoreMvcApp.Commands;
-using AspNetCoreMvcApp.Dtos;
 using AspNetCoreMvcApp.Models;
-using AspNetCoreMvcApp.Queries;
 using CoreDdd.Commands;
 using CoreDdd.Queries;
+using CoreDddShared.Commands;
+using CoreDddShared.Dtos;
+using CoreDddShared.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMvcApp.Controllers
