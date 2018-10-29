@@ -30,17 +30,17 @@ namespace AspNetCoreMvcApp.Controllers
             return View(shipDtos);
         }
 
-        public IActionResult CreateNewShip(int? lastCreatedShipId)
+        public IActionResult CreateNewShip()
         {
-            return View(new CreateNewShipViewModel {LastCreatedShipId = lastCreatedShipId});
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateNewShip(CreateNewShipViewModel createNewShipViewModel)
+        public async Task<IActionResult> CreateNewShip(CreateNewShipCommand createNewShipCommand)
         {
             var generatedShipId = 0;
             _commandExecutor.CommandExecuted += args => generatedShipId = (int) args.Args;
-            await _commandExecutor.ExecuteAsync(createNewShipViewModel.CreateNewShipCommand);
+            await _commandExecutor.ExecuteAsync(createNewShipCommand);
 
             return RedirectToAction("CreateNewShip", new { lastCreatedShipId = generatedShipId });
         }

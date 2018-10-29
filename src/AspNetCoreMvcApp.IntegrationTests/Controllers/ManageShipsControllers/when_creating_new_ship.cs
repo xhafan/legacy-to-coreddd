@@ -32,9 +32,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
                 ShipName = "ship name",
                 Tonnage =  23.4m
             };
-            _actionResult = await manageShipsController.CreateNewShip(
-                new CreateNewShipViewModel {CreateNewShipCommand = createNewShipCommand}
-            );
+            _actionResult = await manageShipsController.CreateNewShip(createNewShipCommand);
 
             _p.Flush();
         }

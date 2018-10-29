@@ -1,18 +1,18 @@
-﻿@model AspNetCoreMvcApp.Controllers.CreateNewShipViewModel
+﻿@model CoreDddShared.Commands.CreateNewShipCommand
 @{
     ViewData["Title"] = "Create new ship";
 }
 
 <form asp-controller="ManageShips" asp-action="CreateNewShip" method="post">
     Ship Name:
-    <input asp-for="CreateNewShipCommand.ShipName" />
+    <input asp-for="ShipName" />
     <br />
     Tonnage:
-    <input asp-for="CreateNewShipCommand.Tonnage" />
+    <input asp-for="Tonnage" />
     <br />
     <button type="submit" title="Clicking the button will execute a command to create a new ship">Create new ship</button>
     <br />
-    Last ShipId created: @Model.LastCreatedShipId
+    Last ShipId created: @Context.Request.Query["lastCreatedShipId"]
 </form>
 <br />
 <a asp-action="Index">Back to the list of ships</a>

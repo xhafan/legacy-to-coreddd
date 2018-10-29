@@ -33,9 +33,7 @@ namespace AspNetCoreMvcApp.Tests.Controllers.ManageShipsControllers.LondonStyleT
             var queryExecutor = A.Fake<IQueryExecutor>();
             var manageShipsController = new ManageShipsController(_commandExecutor, queryExecutor);
 
-            _actionResult = await manageShipsController.CreateNewShip(
-                new CreateNewShipViewModel {CreateNewShipCommand = _createNewShipCommand}
-            );
+            _actionResult = await manageShipsController.CreateNewShip(_createNewShipCommand);
         }
 
         [Test]
