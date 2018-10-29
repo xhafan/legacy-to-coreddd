@@ -49,8 +49,9 @@ namespace AspNetCoreMvcApp.Tests.Controllers.ManageShipsControllers.LondonStyleT
             var redirectToActionResult = (RedirectToActionResult)_actionResult;
             redirectToActionResult.ControllerName.ShouldBeNull();
             redirectToActionResult.ActionName.ShouldBe("CreateNewShip");
+            redirectToActionResult.RouteValues.ShouldNotBeNull();
             redirectToActionResult.RouteValues.ContainsKey("lastCreatedShipId").ShouldBeTrue();
-            ((int)redirectToActionResult.RouteValues["lastCreatedShipId"]).ShouldBeGreaterThan(0);
+            ((int)redirectToActionResult.RouteValues["lastCreatedShipId"]).ShouldBe(GeneratedShipId);
         }
 
         // This method is simulating "what would happen in real command executor"
