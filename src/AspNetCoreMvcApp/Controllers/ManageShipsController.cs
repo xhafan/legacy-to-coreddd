@@ -54,6 +54,7 @@ namespace AspNetCoreMvcApp.Controllers
         public async Task<IActionResult> UpdateShip(UpdateShipCommand updateShipCommand)
         {
             await _commandExecutor.ExecuteAsync(updateShipCommand);
+
             return RedirectToAction("UpdateShip");
         }
 
