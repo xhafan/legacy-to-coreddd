@@ -42,13 +42,12 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         [Test]
         public void action_result_is_view_result_with_last_generated_ship_id_parameterer()
         {
-            _actionResult.ShouldBeOfType<ViewResult>();
-            var viewResult = (ViewResult) _actionResult;
-            viewResult.ViewName.ShouldBeNull();
-            viewResult.Model.ShouldBeOfType<CreateNewShipViewModel>();
-            var createNewShipViewModel = (CreateNewShipViewModel)viewResult.Model;
-            createNewShipViewModel.LastCreatedShipId.ShouldNotBeNull();
-            createNewShipViewModel.LastCreatedShipId.Value.ShouldBeGreaterThan(0);
+            _actionResult.ShouldBeOfType<RedirectToActionResult>();
+            var redirectToActionResult = (RedirectToActionResult) _actionResult;
+            redirectToActionResult.ControllerName.ShouldBeNull();
+            redirectToActionResult.ActionName.ShouldBe("CreateNewShip");
+            redirectToActionResult.RouteValues.ContainsKey("lastCreatedShipId").ShouldBeTrue();
+            ((int)redirectToActionResult.RouteValues["lastCreatedShipId"]).ShouldBeGreaterThan(0);
         }
 
         [Test]

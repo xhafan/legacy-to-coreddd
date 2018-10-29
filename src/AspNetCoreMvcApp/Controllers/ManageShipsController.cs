@@ -41,7 +41,8 @@ namespace AspNetCoreMvcApp.Controllers
             var generatedShipId = 0;
             _commandExecutor.CommandExecuted += args => generatedShipId = (int) args.Args;
             await _commandExecutor.ExecuteAsync(createNewShipViewModel.CreateNewShipCommand);
-            return CreateNewShip(generatedShipId);
+
+            return RedirectToAction("CreateNewShip", new { lastCreatedShipId = generatedShipId });
         }
 
         public IActionResult UpdateShip()
@@ -53,7 +54,7 @@ namespace AspNetCoreMvcApp.Controllers
         public async Task<IActionResult> UpdateShip(UpdateShipCommand updateShipCommand)
         {
             await _commandExecutor.ExecuteAsync(updateShipCommand);
-            return UpdateShip();
+            return RedirectToAction("UpdateShip");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

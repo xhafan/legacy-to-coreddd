@@ -41,9 +41,10 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         [Test]
         public void action_result_is_the_same_view()
         {
-            _actionResult.ShouldBeOfType<ViewResult>();
-            var viewResult = (ViewResult)_actionResult;
-            viewResult.ViewName.ShouldBeNull();
+            _actionResult.ShouldBeOfType<RedirectToActionResult>();
+            var redirectToActionResult = (RedirectToActionResult)_actionResult;
+            redirectToActionResult.ControllerName.ShouldBeNull();
+            redirectToActionResult.ActionName.ShouldBe("UpdateShip");
         }
 
         [Test]

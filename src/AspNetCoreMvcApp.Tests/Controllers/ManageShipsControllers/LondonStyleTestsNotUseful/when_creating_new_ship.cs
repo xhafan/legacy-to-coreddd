@@ -45,15 +45,14 @@ namespace AspNetCoreMvcApp.Tests.Controllers.ManageShipsControllers.LondonStyleT
         }
 
         [Test]
-        public void action_result_is_view_result_with_last_generated_ship_id_parameterer()
+        public void action_result_is_redirect_to_action_result_with_last_generated_ship_id_parameterer()
         {
-            _actionResult.ShouldBeOfType<ViewResult>();
-            var viewResult = (ViewResult) _actionResult;
-            viewResult.ViewName.ShouldBeNull();
-            viewResult.Model.ShouldBeOfType<CreateNewShipViewModel>();
-            var createNewShipViewModel = (CreateNewShipViewModel)viewResult.Model;
-            createNewShipViewModel.LastCreatedShipId.ShouldNotBeNull();
-            createNewShipViewModel.LastCreatedShipId.Value.ShouldBe(GeneratedShipId);
+            _actionResult.ShouldBeOfType<RedirectToActionResult>();
+            var redirectToActionResult = (RedirectToActionResult)_actionResult;
+            redirectToActionResult.ControllerName.ShouldBeNull();
+            redirectToActionResult.ActionName.ShouldBe("CreateNewShip");
+            redirectToActionResult.RouteValues.ContainsKey("lastCreatedShipId").ShouldBeTrue();
+            ((int)redirectToActionResult.RouteValues["lastCreatedShipId"]).ShouldBeGreaterThan(0);
         }
 
         // This method is simulating "what would happen in real command executor"
