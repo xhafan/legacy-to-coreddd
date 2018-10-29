@@ -1,23 +1,23 @@
 ﻿using AspNetCoreMvcApp.Controllers;
 using CoreDdd.Commands;
-using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.Queries;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
     public class ManageShipsControllerBuilder
     {
-        private readonly NhibernateUnitOfWork _unitOfWork;
+        private readonly ServiceProvider _serviceProvider;
 
-        public ManageShipsControllerBuilder(NhibernateUnitOfWork unitOfWork)
+        public ManageShipsControllerBuilder(ServiceProvider serviceProvider)
         {
-            _unitOfWork = unitOfWork;
+            _serviceProvider = serviceProvider;
         }
 
         public ManageShipsController Build()
         {
-            var commandExecutor = new CommandExecutor(new FakeCommandHandlerFactory(_unitOfWork));
-            var queryExecutor = new QueryExecutor(new FakeQueryHandlerFactory(_unitOfWork));
+            var commandExecutor = new CommandExecutor(_serviceProvider.GetService<ICommandHandlerFactory>());
+            var queryExecutor = new QueryExecutor(_serviceProvider.GetService<IQueryHandlerFactory>());
             return new ManageShipsController(commandExecutor, queryExecutor);
         }
     }

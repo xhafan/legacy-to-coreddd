@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared;
 using CoreDddShared.Domain;
 using CoreDddShared.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Shouldly;
 
@@ -15,19 +17,25 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
     public class when_viewing_index
     {
         private PersistenceTestHelper _p;
+        private ServiceProvider _serviceProvider;
+        private IServiceScope _serviceScope;
+
         private IActionResult _actionResult;
         private Ship _newShip;
 
         [SetUp]
         public async Task Context()
         {
-            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
+            _serviceProvider = new ServiceProviderHelper().BuildServiceProvider();
+            _serviceScope = _serviceProvider.CreateScope();
+
+            _p = new PersistenceTestHelper(_serviceProvider.GetService<NhibernateUnitOfWork>());
             _p.BeginTransaction();
 
             _newShip = new Ship("ship name", tonnage: 23.4m);
             _p.Save(_newShip);
 
-            var manageShipsController = new ManageShipsControllerBuilder(_p.UnitOfWork).Build();
+            var manageShipsController = new ManageShipsControllerBuilder(_serviceProvider).Build();
 
             _actionResult = await manageShipsController.Index();
         }
@@ -52,6 +60,8 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         public void TearDown()
         {
             _p.Rollback();
+            _serviceScope.Dispose();
+            _serviceProvider.Dispose();
         }
     }
 }
