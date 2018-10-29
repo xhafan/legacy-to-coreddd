@@ -47,19 +47,19 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         }
 
         [Test]
+        public void ship_is_updated()
+        {
+            var updatedShip = _p.UnitOfWork.Session.Get<Ship>(_newShip.Id);
+            updatedShip.Name.ShouldBe("updated ship name");
+        }
+
+        [Test]
         public void action_result_is_the_same_view()
         {
             _actionResult.ShouldBeOfType<RedirectToActionResult>();
             var redirectToActionResult = (RedirectToActionResult)_actionResult;
             redirectToActionResult.ControllerName.ShouldBeNull();
             redirectToActionResult.ActionName.ShouldBe("UpdateShip");
-        }
-
-        [Test]
-        public void ship_is_updated()
-        {
-            var updatedShip = _p.UnitOfWork.Session.Get<Ship>(_newShip.Id);
-            updatedShip.Name.ShouldBe("updated ship name");
         }
 
         [TearDown]

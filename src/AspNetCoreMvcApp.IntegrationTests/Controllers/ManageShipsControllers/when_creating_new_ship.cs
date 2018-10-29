@@ -44,6 +44,12 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         }
 
         [Test]
+        public void new_ship_is_created()
+        {
+            _GetShipCount().ShouldBe(_shipCountBefore + 1);
+        }
+
+        [Test]
         public void action_result_is_view_result_with_last_generated_ship_id_parameterer()
         {
             _actionResult.ShouldBeOfType<RedirectToActionResult>();
@@ -52,12 +58,6 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
             redirectToActionResult.ActionName.ShouldBe("CreateNewShip");
             redirectToActionResult.RouteValues.ContainsKey("lastCreatedShipId").ShouldBeTrue();
             ((int)redirectToActionResult.RouteValues["lastCreatedShipId"]).ShouldBeGreaterThan(0);
-        }
-
-        [Test]
-        public void new_ship_is_created()
-        {
-            _GetShipCount().ShouldBe(_shipCountBefore + 1);
         }
 
         [TearDown]
