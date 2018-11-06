@@ -1,7 +1,10 @@
-﻿using CoreDdd.Nhibernate.Repositories;
+﻿using CoreDdd.Domain.Events;
+using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.TestHelpers.DomainEvents;
 using CoreDddShared.Commands;
 using CoreDddShared.Domain;
+using CoreDddShared.Domain.Events;
 using NUnit.Framework;
 using Shouldly;
 
@@ -13,10 +16,14 @@ namespace CoreDddShared.IntegrationTests.Commands
         private PersistenceTestHelper _p;
         private Ship _persistedShip;
         private int _generatedShipId;
+        private IDomainEvent _raisedDomainEvent;
 
         [SetUp]
         public void Context()
         {
+            var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = domainEvent as IDomainEvent);
+            DomainEvents.Initialize(domainEventHandlerFactory);
+
             _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
             _p.BeginTransaction();
 
@@ -45,6 +52,15 @@ namespace CoreDddShared.IntegrationTests.Commands
             _persistedShip.ShouldNotBeNull();
             _persistedShip.Name.ShouldBe("ship name");
             _persistedShip.Tonnage.ShouldBe(23.45678m);
+        }
+
+        [Test]
+        public void ship_created_domain_event_is_raised()
+        {
+            _raisedDomainEvent.ShouldNotBeNull();
+            _raisedDomainEvent.ShouldBeOfType<ShipCreatedDomainEvent>();
+            var shipCreatedDomainEvent = (ShipCreatedDomainEvent) _raisedDomainEvent;
+            shipCreatedDomainEvent.ShipId.ShouldBe(_generatedShipId);
         }
 
         [TearDown]

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
@@ -61,7 +56,8 @@ namespace LegacyWebFormsApp
                     .ImplementedBy<CoreDddSharedNhibernateConfigurator>()
                     .LifestyleSingleton()
             );
-            UnitOfWorkHttpModule.Initialize(_windsorContainer.Resolve<IUnitOfWorkFactory>());
+
+            TransactionScopeUnitOfWorkHttpModule.Initialize(_windsorContainer.Resolve<IUnitOfWorkFactory>());
 
             // register command handlers
             _windsorContainer.Register(

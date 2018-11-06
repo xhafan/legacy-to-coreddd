@@ -15,7 +15,7 @@ namespace CoreDddShared.Commands
         }
 
 #if NET40
-        // sync Execute for Web Forms app (which is async) - .NET 4
+        // sync Execute for Web Forms app - .NET 4
         public override void Execute(UpdateShipCommand command)
         {
             var ship = _shipRepository.Get(command.ShipId);
@@ -24,7 +24,7 @@ namespace CoreDddShared.Commands
 #endif
 
 #if !NET40
-        // async ExecuteAsync for ASP.NET Core MVC app (which is async) - .NET 4.5+ and .NET Core
+        // async ExecuteAsync for ASP.NET Core MVC app - .NET 4.5+ and .NET Core
         public override async Task ExecuteAsync(UpdateShipCommand command)
         {
             var ship = await _shipRepository.GetAsync(command.ShipId);

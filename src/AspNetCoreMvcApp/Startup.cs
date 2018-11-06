@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using CoreDdd.AspNetCore.Middleware;
 using CoreDdd.Commands;
+using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.DependencyInjection;
 using CoreDdd.Queries;
@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Rebus.Config;
+using Rebus.ServiceProvider;
 
 namespace AspNetCoreMvcApp
 {
@@ -55,6 +57,17 @@ namespace AspNetCoreMvcApp
                 .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<>)))
                 .AsImplementedInterfaces()
                 .WithTransientLifetime()
+                .AddClasses(classes => classes.AssignableTo(typeof(IDomainEventHandler<>)))
+                .AsImplementedInterfaces()
+                .WithTransientLifetime()
+            );
+
+            var rebusInputQueueName = "AspNetCoreMvcApp";
+            var rebusRabbitMqConnectionString = "amqp://admin:password01@localhost";
+
+            services.AddRebus(configure => configure
+                .Logging(l => l.Trace())
+                .Transport(t => t.UseRabbitMq(rebusRabbitMqConnectionString, rebusInputQueueName))
             );
         }
 
@@ -72,7 +85,9 @@ namespace AspNetCoreMvcApp
 
             app.UseStaticFiles();
 
-            app.UseMiddleware<UnitOfWorkDependencyInjectionMiddleware>(IsolationLevel.ReadCommitted);
+            app.UseRebus();
+
+            app.UseMiddleware<TransactionScopeUnitOfWorkDependencyInjectionMiddleware>(System.Transactions.IsolationLevel.ReadCommitted);
 
             app.UseCookiePolicy();
 
@@ -82,6 +97,8 @@ namespace AspNetCoreMvcApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            DomainEvents.Initialize(app.ApplicationServices.GetService<IDomainEventHandlerFactory>());
 
             _BuildDatabase(app);
         }

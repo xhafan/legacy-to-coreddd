@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDddShared.IntegrationTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreDddShared.Tests", "CoreDddShared.Tests\CoreDddShared.Tests.csproj", "{DCE2148E-7E3D-408C-927B-45BF74A4EC77}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceApp", "ServiceApp\ServiceApp.csproj", "{0FA4BAC2-B45F-4A2B-A9B3-BA446F8F473A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceApp.Tests", "ServiceApp.Tests\ServiceApp.Tests.csproj", "{7DD203C7-F842-4B18-AE1C-C1365C8FAB09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{DCE2148E-7E3D-408C-927B-45BF74A4EC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE2148E-7E3D-408C-927B-45BF74A4EC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE2148E-7E3D-408C-927B-45BF74A4EC77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FA4BAC2-B45F-4A2B-A9B3-BA446F8F473A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FA4BAC2-B45F-4A2B-A9B3-BA446F8F473A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FA4BAC2-B45F-4A2B-A9B3-BA446F8F473A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FA4BAC2-B45F-4A2B-A9B3-BA446F8F473A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD203C7-F842-4B18-AE1C-C1365C8FAB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD203C7-F842-4B18-AE1C-C1365C8FAB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD203C7-F842-4B18-AE1C-C1365C8FAB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD203C7-F842-4B18-AE1C-C1365C8FAB09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

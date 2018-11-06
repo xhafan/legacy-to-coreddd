@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CoreDdd.Domain;
+using CoreDdd.Domain.Events;
+using CoreDddShared.Domain.Events;
 
 namespace CoreDddShared.Domain
 {
@@ -25,6 +28,13 @@ namespace CoreDddShared.Domain
             Tonnage = tonnage;
 
             _shipHistories.Add(new ShipHistory(newShipName, tonnage));
+        }
+
+        public virtual void OnCreationCompleted()
+        {
+            if (Id == default(int)) throw new Exception("Id has not been assigned yet - entity creation has not been completed yet");
+
+            DomainEvents.RaiseEvent(new ShipCreatedDomainEvent { ShipId = Id });
         }
     }
 }
