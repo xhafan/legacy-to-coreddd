@@ -6,5 +6,6 @@ namespace CoreDddShared.Commands
     {
         public string ShipName { get; set; }
         public decimal Tonnage { get; set; }
+        public string ImoNumber { get; set; }
     }
 }

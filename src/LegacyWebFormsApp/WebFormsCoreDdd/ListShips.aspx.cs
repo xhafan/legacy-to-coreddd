@@ -26,7 +26,7 @@ namespace LegacyWebFormsApp.WebFormsCoreDdd
 
             foreach (var shipDto in shipDtos)
             {
-                ExistingShipsListBox.Items.Add($"Id: {shipDto.Id}, Name: {shipDto.Name}, Tonnage: {shipDto.Tonnage}");
+                ExistingShipsListBox.Items.Add($"Id: {shipDto.Id}, Name: {shipDto.Name}, Tonnage: {shipDto.Tonnage}, IMO number: {shipDto.ImoNumber}");
             }
         }
 

@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreDddShared\CoreDddShared.csproj" />
+    <ProjectReference Include="..\TestsShared\TestsShared.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

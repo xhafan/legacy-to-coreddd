@@ -8,6 +8,7 @@ using Castle.Windsor;
 using Castle.Windsor.Installer;
 using CoreDdd.AspNet.HttpModules;
 using CoreDdd.Commands;
+using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Configurations;
 using CoreDdd.Nhibernate.Register.Castle;
 using CoreDdd.Queries;
@@ -76,6 +77,8 @@ namespace LegacyWebFormsApp
                     .WithService.FirstInterface()
                     .Configure(x => x.LifestyleTransient())
             );
+
+            DomainEvents.Initialize(_windsorContainer.Resolve<IDomainEventHandlerFactory>());
 
             IoC.Initialize(new CastleContainer(_windsorContainer));
         }

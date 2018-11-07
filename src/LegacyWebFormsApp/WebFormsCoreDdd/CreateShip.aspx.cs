@@ -19,7 +19,8 @@ namespace LegacyWebFormsApp.WebFormsCoreDdd
             var createNewShipCommand = new CreateNewShipCommand
             {
                 ShipName = ShipNameTextBox.Text,
-                Tonnage = decimal.Parse(TonnageTextBox.Text)
+                Tonnage = decimal.Parse(TonnageTextBox.Text),
+                ImoNumber = ImoNumberTextBox.Text
             };
 
             _commandExecutor.CommandExecuted += args =>

@@ -4,6 +4,7 @@ using CoreDdd.Nhibernate.TestHelpers;
 using CoreDddShared.Domain;
 using NUnit.Framework;
 using Shouldly;
+using TestsShared;
 
 namespace CoreDddShared.IntegrationTests.Domain
 {
@@ -21,7 +22,7 @@ namespace CoreDddShared.IntegrationTests.Domain
             _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
             _p.BeginTransaction();
 
-            _newShip = new Ship("ship name", tonnage: 23.4m);
+            _newShip = new ShipBuilder().Build();
 
             _p.Save(_newShip);
 
@@ -46,8 +47,8 @@ namespace CoreDddShared.IntegrationTests.Domain
         [Test]
         public void ship_history_data_are_persisted_correctly()
         {
-            _persistedShipHistory.Name.ShouldBe("ship name");
-            _persistedShipHistory.Tonnage.ShouldBe(23.4m);
+            _persistedShipHistory.Name.ShouldBe(ShipBuilder.ShipName);
+            _persistedShipHistory.Tonnage.ShouldBe(ShipBuilder.Tonnage);
             _persistedShipHistory.CreatedOn.ShouldBeInRange(DateTime.Now.AddSeconds(-10), DateTime.Now.AddSeconds(+10));
         }
 

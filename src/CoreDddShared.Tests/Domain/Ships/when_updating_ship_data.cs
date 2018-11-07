@@ -3,6 +3,7 @@ using System.Linq;
 using CoreDddShared.Domain;
 using NUnit.Framework;
 using Shouldly;
+using TestsShared;
 
 namespace CoreDddShared.Tests.Domain.Ships
 {
@@ -14,7 +15,7 @@ namespace CoreDddShared.Tests.Domain.Ships
         [SetUp]
         public void Context()
         {
-            _ship = new Ship("ship name", tonnage: 23.4m);
+            _ship = new ShipBuilder().Build();
 
             _ship.UpdateData("new ship name", tonnage: 34.5m);
         }

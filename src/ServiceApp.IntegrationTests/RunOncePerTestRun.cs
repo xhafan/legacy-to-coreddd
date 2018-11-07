@@ -1,7 +1,7 @@
 ﻿using IntegrationTestsShared;
 using NUnit.Framework;
 
-namespace AspNetCoreMvcApp.IntegrationTests
+namespace ServiceApp.IntegrationTests
 {
     [SetUpFixture]
     public class RunOncePerTestRun : BaseRunOncePerTestRun

@@ -3,6 +3,7 @@ using System.Linq;
 using CoreDddShared.Domain;
 using NUnit.Framework;
 using Shouldly;
+using TestsShared;
 
 namespace CoreDddShared.Tests.Domain.Ships
 {
@@ -14,14 +15,15 @@ namespace CoreDddShared.Tests.Domain.Ships
         [SetUp]
         public void Context()
         {
-            _ship = new Ship("ship name", tonnage: 23.4m);
+            _ship = new ShipBuilder().Build();
         }
 
         [Test]
         public void ship_data_are_populated()
         {
-            _ship.Name.ShouldBe("ship name");
-            _ship.Tonnage.ShouldBe(23.4m);
+            _ship.Name.ShouldBe(ShipBuilder.ShipName);
+            _ship.Tonnage.ShouldBe(ShipBuilder.Tonnage);
+            _ship.ImoNumber.ShouldBe(ShipBuilder.ImoNumber);
         }
 
         [Test]
@@ -29,8 +31,8 @@ namespace CoreDddShared.Tests.Domain.Ships
         {
             var shipHistory = _ship.ShipHistories.SingleOrDefault();
             shipHistory.ShouldNotBeNull();
-            shipHistory.Name.ShouldBe("ship name");
-            shipHistory.Tonnage.ShouldBe(23.4m);
+            shipHistory.Name.ShouldBe(ShipBuilder.ShipName);
+            shipHistory.Tonnage.ShouldBe(ShipBuilder.Tonnage);
             shipHistory.CreatedOn.ShouldBeInRange(DateTime.Now.AddSeconds(-10), DateTime.Now.AddSeconds(+10));
         }
     }

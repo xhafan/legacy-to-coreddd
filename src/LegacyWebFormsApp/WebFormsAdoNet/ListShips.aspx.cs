@@ -21,7 +21,7 @@ namespace LegacyWebFormsApp.WebFormsAdoNet
             {
                 connection.Open();
 
-                cmd.CommandText = "SELECT ShipId, ShipName, Tonnage FROM Ship";
+                cmd.CommandText = "SELECT ShipId, ShipName, Tonnage, ImoNumber FROM Ship";
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -29,7 +29,8 @@ namespace LegacyWebFormsApp.WebFormsAdoNet
                         var shipId = reader.GetInt32(0);
                         var shipName = reader.GetString(1);
                         var tonnage = reader.GetDecimal(2);
-                        ExistingShipsListBox.Items.Add($"Id: {shipId}, Name: {shipName}, Tonnage: {tonnage}");
+                        var imoNumber = reader.GetString(3);
+                        ExistingShipsListBox.Items.Add($"Id: {shipId}, Name: {shipName}, Tonnage: {tonnage}, IMO number: {imoNumber}");
                     }
                 }
             }

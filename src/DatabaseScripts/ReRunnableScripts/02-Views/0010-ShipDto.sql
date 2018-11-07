@@ -8,4 +8,5 @@ select
     ShipId      as Id
     , ShipName  as Name
     , Tonnage
+    , ImoNumber
 from Ship

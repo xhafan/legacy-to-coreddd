@@ -30,7 +30,8 @@ namespace CoreDddShared.IntegrationTests.Commands
             var createNewShipCommand = new CreateNewShipCommand
             {
                 ShipName = "ship name",
-                Tonnage = 23.45678m
+                Tonnage = 23.45678m,
+                ImoNumber = "IMO 12345"
             };
             var createNewShipCommandHandler = new CreateNewShipCommandHandler(new NhibernateRepository<Ship>(_p.UnitOfWork));
             createNewShipCommandHandler.CommandExecuted += args => _generatedShipId = (int) args.Args;
@@ -52,6 +53,7 @@ namespace CoreDddShared.IntegrationTests.Commands
             _persistedShip.ShouldNotBeNull();
             _persistedShip.Name.ShouldBe("ship name");
             _persistedShip.Tonnage.ShouldBe(23.45678m);
+            _persistedShip.ImoNumber.ShouldBe("IMO 12345");
         }
 
         [Test]

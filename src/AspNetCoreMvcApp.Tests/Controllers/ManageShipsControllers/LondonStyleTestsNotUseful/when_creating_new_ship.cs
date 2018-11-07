@@ -25,7 +25,8 @@ namespace AspNetCoreMvcApp.Tests.Controllers.ManageShipsControllers.LondonStyleT
             _createNewShipCommand = new CreateNewShipCommand
             {
                 ShipName = "ship name",
-                Tonnage = 23.4m
+                Tonnage = 23.4m,
+                ImoNumber = "IMO 12345"
             };
 
             _commandExecutor = A.Fake<ICommandExecutor>();

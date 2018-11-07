@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared.Commands;
@@ -24,6 +25,8 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         public async Task Context()
         {
             _serviceProvider = new ServiceProviderHelper().BuildServiceProvider();
+            DomainEvents.Initialize(_serviceProvider.GetService<IDomainEventHandlerFactory>());
+
             _serviceScope = _serviceProvider.CreateScope();
 
             _p = new PersistenceTestHelper(_serviceProvider.GetService<NhibernateUnitOfWork>());
@@ -36,11 +39,13 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
             var createNewShipCommand = new CreateNewShipCommand
             {
                 ShipName = "ship name",
-                Tonnage =  23.4m
+                Tonnage =  23.4m,
+                ImoNumber = "IMO 12345"
             };
             _actionResult = await manageShipsController.CreateNewShip(createNewShipCommand);
 
             _p.Flush();
+            _p.Clear();
         }
 
         [Test]

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Shouldly;
+using TestsShared;
 
 namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
 {
@@ -32,7 +33,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
             _p = new PersistenceTestHelper(_serviceProvider.GetService<NhibernateUnitOfWork>());
             _p.BeginTransaction();
 
-            _newShip = new Ship("ship name", tonnage: 23.4m);
+            _newShip = new ShipBuilder().Build();
             _p.Save(_newShip);
 
             var manageShipsController = new ManageShipsControllerBuilder(_serviceProvider).Build();

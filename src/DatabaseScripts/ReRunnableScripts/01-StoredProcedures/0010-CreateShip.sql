@@ -6,6 +6,7 @@ CREATE PROCEDURE CreateShip
 (
     @shipName nvarchar(max)
     , @tonnage decimal(19,5)
+    , @imoNumber nvarchar(max)
 )
 AS
 BEGIN
@@ -15,10 +16,12 @@ declare @shipId int
 INSERT INTO Ship (
     ShipName
     , Tonnage
+    , ImoNumber
     )
 VALUES (
     @shipName
     , @tonnage
+    , @imoNumber
     )
 	
 SELECT @shipId = SCOPE_IDENTITY()

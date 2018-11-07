@@ -6,6 +6,7 @@ using CoreDddShared.Dtos;
 using CoreDddShared.Queries;
 using NUnit.Framework;
 using Shouldly;
+using TestsShared;
 
 namespace CoreDddShared.IntegrationTests.Dtos
 {
@@ -22,7 +23,7 @@ namespace CoreDddShared.IntegrationTests.Dtos
             _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
             _p.BeginTransaction();
 
-            _newShip = new Ship("ship name", tonnage: 23.4m);
+            _newShip = new ShipBuilder().Build();
             _p.Save(_newShip);
             _p.Clear();
 
@@ -42,8 +43,9 @@ namespace CoreDddShared.IntegrationTests.Dtos
         {
             var shipDto = _shipDtos.Single();
             shipDto.Id.ShouldBe(_newShip.Id);
-            shipDto.Name.ShouldBe("ship name");
-            shipDto.Tonnage.ShouldBe(23.4m);
+            shipDto.Name.ShouldBe(ShipBuilder.ShipName);
+            shipDto.Tonnage.ShouldBe(ShipBuilder.Tonnage);
+            shipDto.ImoNumber.ShouldBe(ShipBuilder.ImoNumber);
         }
 
         [TearDown]

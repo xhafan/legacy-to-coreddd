@@ -12,10 +12,11 @@ namespace LegacyWebFormsApp.WebFormsAdoNet
         {
             var shipName = ShipNameTextBox.Text;
             var tonnage = decimal.Parse(TonnageTextBox.Text);
+            var imoNumber = ImoNumberTextBox.Text;
 
             SqlCommandExecutor.ExecuteSqlCommand(cmd =>
             {
-                cmd.CommandText = $"EXEC CreateShip '{shipName}', {tonnage}";
+                cmd.CommandText = $"EXEC CreateShip '{shipName}', {tonnage}, '{imoNumber}'";
                 var shipId = (int)cmd.ExecuteScalar();
                 LastShipIdCreatedLabel.Text = $"{shipId}";
             });

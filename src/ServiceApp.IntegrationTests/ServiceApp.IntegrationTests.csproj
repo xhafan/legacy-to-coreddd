@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;netcoreapp2.1</TargetFrameworks>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
@@ -15,20 +15,17 @@
 
   <ItemGroup>
     <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.36" />
-    <PackageReference Include="CoreDdd.TestHelpers" Version="3.0.36" />
     <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
+    <PackageReference Include="FakeItEasy" Version="4.9.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
-    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
-  </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\CoreDddShared\CoreDddShared.csproj" />
     <ProjectReference Include="..\IntegrationTestsShared\IntegrationTestsShared.csproj" />
+    <ProjectReference Include="..\ServiceApp\ServiceApp.csproj" />
     <ProjectReference Include="..\TestsShared\TestsShared.csproj" />
   </ItemGroup>
 

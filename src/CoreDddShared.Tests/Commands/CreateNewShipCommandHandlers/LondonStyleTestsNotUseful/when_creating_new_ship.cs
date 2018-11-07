@@ -23,10 +23,16 @@ namespace CoreDddShared.Tests.Commands.CreateNewShipCommandHandlers.LondonStyleT
             var createNewShipCommand = new CreateNewShipCommand
             {
                 ShipName = "ship name",
-                Tonnage = 23.45678m
+                Tonnage = 23.45678m,
+                ImoNumber = "IMO 12345"
             };
             _shipRepository = A.Fake<IRepository<Ship>>();
+#if NET40
             A.CallTo(() => _shipRepository.Save(A<Ship>._)).Invokes(x =>
+#endif
+#if !NET40
+            A.CallTo(() => _shipRepository.SaveAsync(A<Ship>._)).Invokes(x =>
+#endif
             {
                 // when shipRepository.Save() is called, simulate NHibernate assigning Id to the Ship entity
                 var shipPassedAsParameter = x.GetArgument<Ship>(0);
@@ -34,19 +40,31 @@ namespace CoreDddShared.Tests.Commands.CreateNewShipCommandHandlers.LondonStyleT
             });
             var createNewShipCommandHandler = new CreateNewShipCommandHandler(_shipRepository);
             createNewShipCommandHandler.CommandExecuted += args => _generatedShipId = (int)args.Args;
+
+#if NET40
             createNewShipCommandHandler.Execute(createNewShipCommand);
+#endif
+#if !NET40
+            createNewShipCommandHandler.ExecuteAsync(createNewShipCommand).Wait();
+#endif
         }
 
         [Test]
         public void ship_is_saved_with_correct_data()
         {
+#if NET40
             A.CallTo(() => _shipRepository.Save(A<Ship>.That.Matches(p => _MatchingShip(p)))).MustHaveHappened();
+#endif
+#if !NET40
+            A.CallTo(() => _shipRepository.SaveAsync(A<Ship>.That.Matches(p => _MatchingShip(p)))).MustHaveHappened();
+#endif
         }
 
         private bool _MatchingShip(Ship p)
         {
             p.Name.ShouldBe("ship name");
             p.Tonnage.ShouldBe(23.45678m);
+            p.ImoNumber.ShouldBe("IMO 12345");
             return true;
         }
 

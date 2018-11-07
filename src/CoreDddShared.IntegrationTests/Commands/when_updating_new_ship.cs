@@ -4,6 +4,7 @@ using CoreDddShared.Commands;
 using CoreDddShared.Domain;
 using NUnit.Framework;
 using Shouldly;
+using TestsShared;
 
 namespace CoreDddShared.IntegrationTests.Commands
 {
@@ -19,7 +20,7 @@ namespace CoreDddShared.IntegrationTests.Commands
             _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
             _p.BeginTransaction();
 
-            var ship = new Ship("ship name", tonnage: 23.4m);
+            var ship = new ShipBuilder().Build();
             _p.Save(ship);
 
             var updateShipCommand = new UpdateShipCommand

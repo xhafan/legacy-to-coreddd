@@ -3,11 +3,11 @@ using CoreDdd.Rebus.UnitOfWork;
 using CoreDdd.Register.DependencyInjection;
 using CoreDdd.UnitOfWorks;
 using CoreDddShared;
+using CoreDddShared.Domain;
 using CoreDddShared.Domain.Events;
 using Microsoft.Extensions.DependencyInjection;
 using Rebus.Config;
 using Rebus.ServiceProvider;
-using ServiceApp.WebServiceNotifications;
 
 namespace ServiceApp
 {
@@ -20,9 +20,9 @@ namespace ServiceApp
             services.AddCoreDdd();
             services.AddCoreDddNhibernate<CoreDddSharedNhibernateConfigurator>();
 
-            services.AddTransient<IShipCreatedWebServiceNotification, ShipCreatedWebServiceNotification>();
+            services.AddTransient<IInternationalMaritimeOrganizationVerifier, InternationalMaritimeOrganizationVerifier>();
 
-            services.AutoRegisterHandlersFromAssemblyOf<ShipCreatedDomainEventMessageHandler>();
+            services.AutoRegisterHandlersFromAssemblyOf<VerifyImoNumberShipCreatedDomainEventMessageHandler>();
 
             services.AddRebus(configure => configure
                 .Logging(l => l.ColoredConsole())

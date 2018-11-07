@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="..\IntegrationTestsShared\hibernate.cfg.xml" Link="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.36" />
     <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
@@ -18,13 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="hibernate.cfg.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AspNetCoreMvcApp\AspNetCoreMvcApp.csproj" />
+    <ProjectReference Include="..\IntegrationTestsShared\IntegrationTestsShared.csproj" />
+    <ProjectReference Include="..\TestsShared\TestsShared.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

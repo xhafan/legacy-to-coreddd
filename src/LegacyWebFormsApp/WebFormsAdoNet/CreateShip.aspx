@@ -15,6 +15,9 @@
             Tonnage:
             <asp:TextBox ID="TonnageTextBox" runat="server"></asp:TextBox>
             <br />
+            IMO Number:
+            <asp:TextBox ID="ImoNumberTextBox" runat="server"></asp:TextBox>
+            <br />
             <asp:Button 
                 ID="CreateShipButton" 
                 runat="server" 
