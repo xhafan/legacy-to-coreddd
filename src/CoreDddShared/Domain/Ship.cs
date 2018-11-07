@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using CoreDdd.Domain;
 using CoreDdd.Domain.Events;
 using CoreDddShared.Domain.Events;
+#if !NET40
+using System.Threading.Tasks;
+#endif
 
 namespace CoreDddShared.Domain
 {
