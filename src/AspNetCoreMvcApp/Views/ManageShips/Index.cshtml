@@ -12,6 +12,6 @@ Existing ships:
 <select multiple="multiple" width="500" height="200" size="10">
     @foreach (var shipDto in Model)
     {
-        <option>Id: @shipDto.Id, Name: @shipDto.Name, Tonnage: @shipDto.Tonnage, IMO number: @shipDto.ImoNumber</option>
+    <option>Id: @shipDto.Id, Name: @shipDto.Name, Tonnage: @shipDto.Tonnage, IMO number: @shipDto.ImoNumber, IMO number is verified: @shipDto.IsImoNumberVerified</option>
     }
 </select>

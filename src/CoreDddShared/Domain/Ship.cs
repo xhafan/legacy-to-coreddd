@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CoreDdd.Domain;
+#if NETSTANDARD2_0
+using System;
+using System.Threading.Tasks;
 using CoreDdd.Domain.Events;
 using CoreDddShared.Domain.Events;
-#if !NET40
-using System.Threading.Tasks;
 #endif
 
 namespace CoreDddShared.Domain
@@ -36,6 +36,7 @@ namespace CoreDddShared.Domain
             _shipHistories.Add(new ShipHistory(newShipName, tonnage));
         }
 
+#if NETSTANDARD2_0 // AspNetCoreMvcApp
         public virtual void OnCreationCompleted()
         {
             if (Id == default(int)) throw new Exception("Id has not been assigned yet - entity creation has not been completed yet");
@@ -43,14 +44,15 @@ namespace CoreDddShared.Domain
             DomainEvents.RaiseEvent(new ShipCreatedDomainEvent { ShipId = Id });
         }
 
-        public virtual void CheckImoNumber()
-        {
-        }
-
-#if !NET40
         public virtual async Task VerifyImoNumber(IInternationalMaritimeOrganizationVerifier internationalMaritimeOrganizationVerifier)
         {
             IsImoNumberVerified = await internationalMaritimeOrganizationVerifier.IsImoNumberValid(ImoNumber);
+        }
+#endif
+#if NET40 // LegacyWebFormsApp
+        public virtual void VerifyImoNumber(IInternationalMaritimeOrganizationVerifier internationalMaritimeOrganizationVerifier)
+        {
+            IsImoNumberVerified = internationalMaritimeOrganizationVerifier.IsImoNumberValid(ImoNumber);
         }
 #endif
     }

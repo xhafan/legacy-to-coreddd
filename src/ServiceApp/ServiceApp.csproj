@@ -16,12 +16,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreDdd.Nhibernate.Register.DependencyInjection" Version="3.0.36" />
+    <PackageReference Include="Castle.Core" Version="4.2.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+    <PackageReference Include="CoreDdd.Nhibernate.Register.Castle" Version="3.0.36" />
     <PackageReference Include="CoreDdd.Rebus.UnitOfWork" Version="3.0.36" />
-    <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.0.36" />
+    <PackageReference Include="CoreDdd.Register.Castle" Version="3.0.36" />
     <PackageReference Include="Rebus" Version="5.0.1" />
+    <PackageReference Include="Rebus.Castle.Windsor" Version="4.1.0" />
     <PackageReference Include="Rebus.RabbitMq" Version="5.0.0-b02" />
-    <PackageReference Include="Rebus.ServiceProvider" Version="4.0.1" />
     <PackageReference Include="Rebus.UnitOfWork" Version="4.0.0" />
   </ItemGroup>
 

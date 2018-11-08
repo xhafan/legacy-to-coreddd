@@ -15,7 +15,7 @@
         <div>
             Existing ships:
             <br />
-            <asp:ListBox ID="ExistingShipsListBox" runat="server" Width="500" Height="200"></asp:ListBox>
+            <asp:ListBox ID="ExistingShipsListBox" runat="server" Width="800" Height="200"></asp:ListBox>
         </div>
     </form>
 </body>

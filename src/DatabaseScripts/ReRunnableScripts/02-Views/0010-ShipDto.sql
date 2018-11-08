@@ -9,4 +9,5 @@ select
     , ShipName  as Name
     , Tonnage
     , ImoNumber
+    , IsImoNumberVerified
 from Ship

@@ -1,4 +1,6 @@
-﻿using CoreDdd.Domain.Events;
+﻿#if NETCOREAPP2_1
+using System.Threading.Tasks;
+using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.TestHelpers.DomainEvents;
@@ -8,7 +10,7 @@ using CoreDddShared.Domain.Events;
 using NUnit.Framework;
 using Shouldly;
 
-namespace CoreDddShared.IntegrationTests.Commands
+namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.AspNetCoreMvcApps
 {
     [TestFixture]
     public class when_creating_new_ship
@@ -19,7 +21,7 @@ namespace CoreDddShared.IntegrationTests.Commands
         private IDomainEvent _raisedDomainEvent;
 
         [SetUp]
-        public void Context()
+        public async Task Context()
         {
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = domainEvent as IDomainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
@@ -35,13 +37,9 @@ namespace CoreDddShared.IntegrationTests.Commands
             };
             var createNewShipCommandHandler = new CreateNewShipCommandHandler(new NhibernateRepository<Ship>(_p.UnitOfWork));
             createNewShipCommandHandler.CommandExecuted += args => _generatedShipId = (int) args.Args;
-#if NET40
-            createNewShipCommandHandler.Execute(createNewShipCommand);
-#endif
-#if !NET40
-            createNewShipCommandHandler.ExecuteAsync(createNewShipCommand).Wait();
-#endif
+            await createNewShipCommandHandler.ExecuteAsync(createNewShipCommand);
 
+            _p.Flush();
             _p.Clear();
 
             _persistedShip = _p.Get<Ship>(_generatedShipId);
@@ -72,3 +70,4 @@ namespace CoreDddShared.IntegrationTests.Commands
         }
     }
 }
+#endif

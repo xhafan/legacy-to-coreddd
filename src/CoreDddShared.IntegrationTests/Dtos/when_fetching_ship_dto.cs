@@ -46,6 +46,7 @@ namespace CoreDddShared.IntegrationTests.Dtos
             shipDto.Name.ShouldBe(ShipBuilder.ShipName);
             shipDto.Tonnage.ShouldBe(ShipBuilder.Tonnage);
             shipDto.ImoNumber.ShouldBe(ShipBuilder.ImoNumber);
+            shipDto.IsImoNumberVerified.ShouldBe(false);
         }
 
         [TearDown]

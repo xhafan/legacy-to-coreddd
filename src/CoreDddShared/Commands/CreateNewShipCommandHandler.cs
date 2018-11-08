@@ -1,9 +1,8 @@
-﻿using CoreDdd.Commands;
+﻿#if NETSTANDARD2_0 // AspNetCoreMvcApp
+using CoreDdd.Commands;
 using CoreDdd.Domain.Repositories;
 using CoreDddShared.Domain;
-#if !NET40
 using System.Threading.Tasks;
-#endif
 
 namespace CoreDddShared.Commands
 {
@@ -15,20 +14,7 @@ namespace CoreDddShared.Commands
         {
             _shipRepository = shipRepository;
         }
-#if NET40
-        // sync Execute for Web Forms app - .NET 4
-        public override void Execute(CreateNewShipCommand command)
-        {
-            var newShip = new Ship(command.ShipName, command.Tonnage, command.ImoNumber);
-            _shipRepository.Save(newShip);
-            newShip.OnCreationCompleted();
-
-            RaiseCommandExecutedEvent(new CommandExecutedArgs {Args = newShip.Id});
-        }
-#endif
-
-#if !NET40
-        // async ExecuteAsync for ASP.NET Core MVC app - .NET 4.5+ and .NET Core
+        
         public override async Task ExecuteAsync(CreateNewShipCommand command)
         {
             var newShip = new Ship(command.ShipName, command.Tonnage, command.ImoNumber);
@@ -36,7 +22,40 @@ namespace CoreDddShared.Commands
             newShip.OnCreationCompleted();
 
             RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = newShip.Id });
-        }
-#endif
+        }    
     }
 }
+#endif
+
+#if NET40 // LegacyWebFormsApp
+using CoreDdd.Commands;
+using CoreDdd.Domain.Repositories;
+using CoreDddShared.Domain;
+
+namespace CoreDddShared.Commands
+{
+    public class CreateNewShipCommandHandler : BaseCommandHandler<CreateNewShipCommand>
+    {
+        private readonly IRepository<Ship> _shipRepository;
+        private readonly IInternationalMaritimeOrganizationVerifier _internationalMaritimeOrganizationVerifier;
+
+        public CreateNewShipCommandHandler(
+            IRepository<Ship> shipRepository,
+            IInternationalMaritimeOrganizationVerifier internationalMaritimeOrganizationVerifier
+            )
+        {
+            _internationalMaritimeOrganizationVerifier = internationalMaritimeOrganizationVerifier;
+            _shipRepository = shipRepository;
+        }
+
+        public override void Execute(CreateNewShipCommand command)
+        {
+            var newShip = new Ship(command.ShipName, command.Tonnage, command.ImoNumber);
+            _shipRepository.Save(newShip);
+            newShip.VerifyImoNumber(_internationalMaritimeOrganizationVerifier);
+
+            RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = newShip.Id });
+        }
+    }
+}
+#endif

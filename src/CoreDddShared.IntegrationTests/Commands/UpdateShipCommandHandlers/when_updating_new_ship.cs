@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Shouldly;
 using TestsShared;
 
-namespace CoreDddShared.IntegrationTests.Commands
+namespace CoreDddShared.IntegrationTests.Commands.UpdateShipCommandHandlers
 {
     [TestFixture]
     public class when_updating_new_ship
@@ -33,7 +33,7 @@ namespace CoreDddShared.IntegrationTests.Commands
 #if NET40
             updateShipCommandHandler.Execute(updateShipCommand);
 #endif
-#if !NET40
+#if NETCOREAPP2_1
             updateShipCommandHandler.ExecuteAsync(updateShipCommand).Wait();
 #endif
 

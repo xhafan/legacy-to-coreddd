@@ -1,4 +1,4 @@
-﻿#if !NET40 // when_handling_ship_created_domain_event will only work in AspNetCoreMvcApp and not in LegacyWebFormsApp
+﻿#if NETCOREAPP2_1 // ShipCreatedDomainEventHandler is only in AspNetCoreMvcApp and not in LegacyWebFormsApp
 using CoreDddShared.Domain.Events;
 using FakeItEasy;
 using NUnit.Framework;

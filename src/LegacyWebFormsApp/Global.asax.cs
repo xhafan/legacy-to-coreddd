@@ -16,6 +16,7 @@ using CoreDdd.Register.Castle;
 using CoreDdd.UnitOfWorks;
 using CoreDddShared;
 using CoreDddShared.Commands;
+using CoreDddShared.Domain;
 using CoreDddShared.Queries;
 using CoreIoC;
 using CoreIoC.Castle;
@@ -79,6 +80,13 @@ namespace LegacyWebFormsApp
             );
 
             DomainEvents.Initialize(_windsorContainer.Resolve<IDomainEventHandlerFactory>());
+
+            _windsorContainer.Register(
+                Component
+                    .For<IInternationalMaritimeOrganizationVerifier>()
+                    .ImplementedBy<InternationalMaritimeOrganizationVerifier>()
+                    .LifestyleTransient()
+            );
 
             IoC.Initialize(new CastleContainer(_windsorContainer));
         }
