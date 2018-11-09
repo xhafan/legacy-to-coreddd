@@ -55,10 +55,11 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
         }
 
         [Test]
-        public void imo_number_is_verified()
+        public void imo_number_is_verified_and_is_valid()
         {
             var ship = _p.Get<Ship>(_persistedShip.Id);
-            ship.IsImoNumberVerified.ShouldBeTrue();
+            ship.HasImoNumberBeenVerified.ShouldBeTrue();
+            ship.IsImoNumberValid.ShouldBeTrue();
         }
 
         [TearDown]

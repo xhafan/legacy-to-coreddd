@@ -15,7 +15,7 @@
             Tonnage:
             <asp:TextBox ID="TonnageTextBox" runat="server"></asp:TextBox>
             <br />
-            IMO Number:
+            IMO (International Maritime Organization) Number:
             <asp:TextBox ID="ImoNumberTextBox" runat="server"></asp:TextBox>
             <br />
             <asp:Button 

@@ -46,7 +46,8 @@ namespace CoreDddShared.IntegrationTests.Domain
             _persistedShip.Name.ShouldBe(ShipBuilder.ShipName);
             _persistedShip.Tonnage.ShouldBe(ShipBuilder.Tonnage);
             _persistedShip.ImoNumber.ShouldBe(ShipBuilder.ImoNumber);
-            _persistedShip.IsImoNumberVerified.ShouldBe(false);
+            _persistedShip.HasImoNumberBeenVerified.ShouldBe(false);
+            _persistedShip.IsImoNumberValid.ShouldBe(false);
         }
 
         [TearDown]

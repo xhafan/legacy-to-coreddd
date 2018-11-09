@@ -25,7 +25,8 @@ namespace CoreDddShared.Domain
         public virtual string Name { get; protected set; } // virtual modifier needed by nhibernate // - https://stackoverflow.com/a/848116/379279
         public virtual decimal Tonnage { get; protected set; } // protected modifier needed by nhibernate
         public virtual string ImoNumber { get; protected set; }
-        public virtual bool IsImoNumberVerified { get; protected set; }
+        public virtual bool HasImoNumberBeenVerified { get; protected set; }
+        public virtual bool IsImoNumberValid { get; protected set; }
         public virtual IEnumerable<ShipHistory> ShipHistories => _shipHistories;
 
         public virtual void UpdateData(string newShipName, decimal tonnage)
@@ -46,13 +47,15 @@ namespace CoreDddShared.Domain
 
         public virtual async Task VerifyImoNumber(IInternationalMaritimeOrganizationVerifier internationalMaritimeOrganizationVerifier)
         {
-            IsImoNumberVerified = await internationalMaritimeOrganizationVerifier.IsImoNumberValid(ImoNumber);
+            IsImoNumberValid = await internationalMaritimeOrganizationVerifier.IsImoNumberValid(ImoNumber);
+            HasImoNumberBeenVerified = true;
         }
 #endif
 #if NET40 // LegacyWebFormsApp
         public virtual void VerifyImoNumber(IInternationalMaritimeOrganizationVerifier internationalMaritimeOrganizationVerifier)
         {
-            IsImoNumberVerified = internationalMaritimeOrganizationVerifier.IsImoNumberValid(ImoNumber);
+            IsImoNumberValid = internationalMaritimeOrganizationVerifier.IsImoNumberValid(ImoNumber);
+            HasImoNumberBeenVerified = true;
         }
 #endif
     }

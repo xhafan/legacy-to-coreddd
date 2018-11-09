@@ -17,7 +17,7 @@ namespace CoreDddShared.Domain
 #pragma warning restore 1998
         {
             // implement ship verification using International Maritime Organization web api
-            await Task.Delay(2000); // sleep 2 seconds to simulate slow web request
+            await Task.Delay(4000); // sleep 4 seconds to simulate slow web request
             return true;
         }
 #endif
@@ -25,7 +25,7 @@ namespace CoreDddShared.Domain
         public bool IsImoNumberValid(string imoNumber)
         {
             // implement ship verification using International Maritime Organization web api
-            Thread.Sleep(2000); // sleep 2 seconds to simulate slow web request        
+            Thread.Sleep(4000); // sleep 4 seconds to simulate slow web request        
             return true;
         }
 #endif

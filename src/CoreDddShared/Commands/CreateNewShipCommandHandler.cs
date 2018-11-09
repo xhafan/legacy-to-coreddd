@@ -51,8 +51,8 @@ namespace CoreDddShared.Commands
         public override void Execute(CreateNewShipCommand command)
         {
             var newShip = new Ship(command.ShipName, command.Tonnage, command.ImoNumber);
-            _shipRepository.Save(newShip);
             newShip.VerifyImoNumber(_internationalMaritimeOrganizationVerifier);
+            _shipRepository.Save(newShip);
 
             RaiseCommandExecutedEvent(new CommandExecutedArgs { Args = newShip.Id });
         }
