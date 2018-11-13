@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
+using AspNetCoreMvcApp.BusRequestSenders;
 using CoreDdd.AspNetCore.Middleware;
 using CoreDdd.Commands;
 using CoreDdd.Domain.Events;
@@ -10,6 +11,7 @@ using CoreDdd.Nhibernate.Register.DependencyInjection;
 using CoreDdd.Queries;
 using CoreDdd.Register.DependencyInjection;
 using CoreDddShared;
+using CoreDddShared.Commands;
 using CoreDddShared.Domain;
 using DatabaseBuilder;
 using Microsoft.AspNetCore.Builder;
@@ -19,6 +21,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Rebus.Config;
+using Rebus.Routing.TypeBased;
 using Rebus.ServiceProvider;
 
 namespace AspNetCoreMvcApp
@@ -68,7 +71,11 @@ namespace AspNetCoreMvcApp
             services.AddRebus(configure => configure
                 .Logging(l => l.Trace())
                 .Transport(t => t.UseRabbitMq(rebusRabbitMqConnectionString, rebusInputQueueName))
+                .Options(o => o.EnableSynchronousRequestReply())
+                .Routing(x => x.TypeBased().MapAssemblyOf<CreateNewShipCommand>("ServiceApp"))
             );
+
+            services.AddSingleton<IBusRequestSender, BusRequestSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

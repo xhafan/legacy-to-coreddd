@@ -14,7 +14,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
     {
         private PersistenceTestHelper _p;
         private Ship _persistedShip;
-        private int _generatedShipId;
+        private int _createdShipId;
 
         [SetUp]
         public void Context()
@@ -36,13 +36,13 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
                 new NhibernateRepository<Ship>(_p.UnitOfWork),
                 internationalMaritimeOrganizationVerifier
                 );
-            createNewShipCommandHandler.CommandExecuted += args => _generatedShipId = (int) args.Args;
+            createNewShipCommandHandler.CommandExecuted += args => _createdShipId = (int) args.Args;
             createNewShipCommandHandler.Execute(createNewShipCommand);
 
             _p.Flush();
             _p.Clear();
 
-            _persistedShip = _p.Get<Ship>(_generatedShipId);
+            _persistedShip = _p.Get<Ship>(_createdShipId);
         }
 
         [Test]

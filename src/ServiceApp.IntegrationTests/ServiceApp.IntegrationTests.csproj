@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="CoreDdd.Nhibernate.TestHelpers" version="3.0.36" />
+    <PackageReference Include="CoreDdd.TestHelpers" Version="3.0.36" />
     <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
     <PackageReference Include="FakeItEasy" Version="4.9.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />

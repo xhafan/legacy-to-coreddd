@@ -17,7 +17,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
     {
         private PersistenceTestHelper _p;
         private Ship _persistedShip;
-        private int _generatedShipId;
+        private int _createdShipId;
         private IDomainEvent _raisedDomainEvent;
 
         [SetUp]
@@ -36,13 +36,13 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
                 ImoNumber = "IMO 12345"
             };
             var createNewShipCommandHandler = new CreateNewShipCommandHandler(new NhibernateRepository<Ship>(_p.UnitOfWork));
-            createNewShipCommandHandler.CommandExecuted += args => _generatedShipId = (int) args.Args;
+            createNewShipCommandHandler.CommandExecuted += args => _createdShipId = (int) args.Args;
             await createNewShipCommandHandler.ExecuteAsync(createNewShipCommand);
 
             _p.Flush();
             _p.Clear();
 
-            _persistedShip = _p.Get<Ship>(_generatedShipId);
+            _persistedShip = _p.Get<Ship>(_createdShipId);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
             _raisedDomainEvent.ShouldNotBeNull();
             _raisedDomainEvent.ShouldBeOfType<ShipCreatedDomainEvent>();
             var shipCreatedDomainEvent = (ShipCreatedDomainEvent) _raisedDomainEvent;
-            shipCreatedDomainEvent.ShipId.ShouldBe(_generatedShipId);
+            shipCreatedDomainEvent.ShipId.ShouldBe(_createdShipId);
         }
 
         [TearDown]

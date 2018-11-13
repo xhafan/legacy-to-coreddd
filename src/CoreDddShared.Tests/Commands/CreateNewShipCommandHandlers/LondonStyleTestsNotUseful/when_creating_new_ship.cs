@@ -13,7 +13,7 @@ namespace CoreDddShared.Tests.Commands.CreateNewShipCommandHandlers.LondonStyleT
     [TestFixture]
     public class when_creating_new_ship
     {
-        private int _generatedShipId;
+        private int _createdShipId;
         private IRepository<Ship> _shipRepository;
 
         [SetUp]
@@ -36,7 +36,7 @@ namespace CoreDddShared.Tests.Commands.CreateNewShipCommandHandlers.LondonStyleT
                 shipPassedAsParameter.SetPrivateProperty("Id", 23);
             });
             var createNewShipCommandHandler = new CreateNewShipCommandHandler(_shipRepository);
-            createNewShipCommandHandler.CommandExecuted += args => _generatedShipId = (int)args.Args;
+            createNewShipCommandHandler.CommandExecuted += args => _createdShipId = (int)args.Args;
 
             createNewShipCommandHandler.ExecuteAsync(createNewShipCommand).Wait();
         }
@@ -58,7 +58,7 @@ namespace CoreDddShared.Tests.Commands.CreateNewShipCommandHandlers.LondonStyleT
         [Test]
         public void command_executed_event_is_raised_with_stubbed_ship_id()
         {
-            _generatedShipId.ShouldBe(23);
+            _createdShipId.ShouldBe(23);
         }
     }
     public static class ObjectExtensions

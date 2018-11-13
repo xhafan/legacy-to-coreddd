@@ -1,4 +1,5 @@
-﻿using CoreDdd.Commands;
+﻿#if NETSTANDARD2_0
+using CoreDdd.Commands;
 using CoreDdd.Nhibernate.Register.DependencyInjection;
 using CoreDdd.Queries;
 using CoreDdd.Register.DependencyInjection;
@@ -6,7 +7,7 @@ using CoreDddShared;
 using CoreDddShared.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
+namespace IntegrationTestsShared
 {
     public class ServiceProviderHelper
     {
@@ -30,3 +31,4 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         }
     }
 }
+#endif

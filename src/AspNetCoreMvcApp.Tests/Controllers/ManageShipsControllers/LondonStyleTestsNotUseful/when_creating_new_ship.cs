@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AspNetCoreMvcApp.Controllers;
 using CoreDdd.Commands;
 using CoreDdd.Queries;
 using CoreDddShared.Commands;
@@ -17,7 +16,7 @@ namespace AspNetCoreMvcApp.Tests.Controllers.ManageShipsControllers.LondonStyleT
         private IActionResult _actionResult;
         private ICommandExecutor _commandExecutor;
         private CreateNewShipCommand _createNewShipCommand;
-        private const int GeneratedShipId = 34;
+        private const int CreatedShipId = 34;
 
         [SetUp]
         public async Task Context()
@@ -30,9 +29,13 @@ namespace AspNetCoreMvcApp.Tests.Controllers.ManageShipsControllers.LondonStyleT
             };
 
             _commandExecutor = A.Fake<ICommandExecutor>();
-            _FakeThatWhenCommandIsExecutedTheCommandExecutedEventIsRaisedWithGeneratedShipIdAsEventArgs();
+            _FakeThatWhenCommandIsExecutedTheCommandExecutedEventIsRaisedWithCreatedShipIdAsEventArgs();
             var queryExecutor = A.Fake<IQueryExecutor>();
-            var manageShipsController = new ManageShipsController(_commandExecutor, queryExecutor);
+
+            var manageShipsController = new ManageShipsControllerBuilder()
+                .WithCommandExecutor(_commandExecutor)
+                .WithQueryExecutor(queryExecutor)
+                .Build();
 
             _actionResult = await manageShipsController.CreateNewShip(_createNewShipCommand);
         }
@@ -52,16 +55,16 @@ namespace AspNetCoreMvcApp.Tests.Controllers.ManageShipsControllers.LondonStyleT
             redirectToActionResult.ActionName.ShouldBe("CreateNewShip");
             redirectToActionResult.RouteValues.ShouldNotBeNull();
             redirectToActionResult.RouteValues.ContainsKey("lastCreatedShipId").ShouldBeTrue();
-            ((int)redirectToActionResult.RouteValues["lastCreatedShipId"]).ShouldBe(GeneratedShipId);
+            ((int)redirectToActionResult.RouteValues["lastCreatedShipId"]).ShouldBe(CreatedShipId);
         }
 
         // This method is simulating "what would happen in real command executor"
-        private void _FakeThatWhenCommandIsExecutedTheCommandExecutedEventIsRaisedWithGeneratedShipIdAsEventArgs()
+        private void _FakeThatWhenCommandIsExecutedTheCommandExecutedEventIsRaisedWithCreatedShipIdAsEventArgs()
         {
             A.CallTo(() => _commandExecutor.ExecuteAsync(_createNewShipCommand)).Invokes(() =>
             {
                 _commandExecutor.CommandExecuted +=
-                    Raise.FreeForm<Action<CommandExecutedArgs>>.With(new CommandExecutedArgs { Args = GeneratedShipId });
+                    Raise.FreeForm<Action<CommandExecutedArgs>>.With(new CommandExecutedArgs { Args = CreatedShipId });
             });
         }
     }

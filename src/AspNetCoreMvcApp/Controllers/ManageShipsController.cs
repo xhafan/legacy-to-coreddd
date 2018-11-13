@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using AspNetCoreMvcApp.BusRequestSenders;
 using AspNetCoreMvcApp.Models;
 using CoreDdd.Commands;
 using CoreDdd.Queries;
@@ -14,12 +16,15 @@ namespace AspNetCoreMvcApp.Controllers
     {
         private readonly ICommandExecutor _commandExecutor;
         private readonly IQueryExecutor _queryExecutor;
+        private readonly IBusRequestSender _busRequestSender;
 
         public ManageShipsController(
             ICommandExecutor commandExecutor,
-            IQueryExecutor queryExecutor
+            IQueryExecutor queryExecutor,
+            IBusRequestSender bus
             )
         {
+            _busRequestSender = bus;
             _queryExecutor = queryExecutor;
             _commandExecutor = commandExecutor;
         }
@@ -38,11 +43,11 @@ namespace AspNetCoreMvcApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNewShip(CreateNewShipCommand createNewShipCommand)
         {
-            var generatedShipId = 0;
-            _commandExecutor.CommandExecuted += args => generatedShipId = (int) args.Args;
+            var createdShipId = 0;
+            _commandExecutor.CommandExecuted += args => createdShipId = (int) args.Args;
             await _commandExecutor.ExecuteAsync(createNewShipCommand);
 
-            return RedirectToAction("CreateNewShip", new { lastCreatedShipId = generatedShipId });
+            return RedirectToAction("CreateNewShip", new { lastCreatedShipId = createdShipId });
         }
 
         public IActionResult UpdateShip()
@@ -62,6 +67,14 @@ namespace AspNetCoreMvcApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewShipReliably(CreateNewShipCommand createNewShipCommand)
+        {
+            var reply = await _busRequestSender.SendRequest<CreateNewShipCommandReply>(createNewShipCommand);
+
+            return RedirectToAction("CreateNewShip", new { lastCreatedShipId = reply.CreatedShipId });
         }
     }
 }

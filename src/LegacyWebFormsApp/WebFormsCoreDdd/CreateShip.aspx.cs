@@ -25,8 +25,8 @@ namespace LegacyWebFormsApp.WebFormsCoreDdd
 
             _commandExecutor.CommandExecuted += args =>
             {
-                var generatedShipId = (int)args.Args;
-                LastShipIdCreatedLabel.Text = $"{generatedShipId}";
+                var createdShipId = (int)args.Args;
+                LastShipIdCreatedLabel.Text = $"{createdShipId}";
             };
             _commandExecutor.Execute(createNewShipCommand);
         }

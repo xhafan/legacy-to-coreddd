@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.UnitOfWorks;
-using CoreDddShared;
 using CoreDddShared.Commands;
 using CoreDddShared.Domain;
+using IntegrationTestsShared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;

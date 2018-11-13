@@ -4,7 +4,7 @@ using CoreDddShared.Domain;
 using CoreDddShared.Domain.Events;
 using Rebus.Handlers;
 
-namespace ServiceApp
+namespace ServiceApp.MessageHandlers
 {
     public class VerifyImoNumberShipCreatedDomainEventMessageHandler : IHandleMessages<ShipCreatedDomainEventMessage>
     {

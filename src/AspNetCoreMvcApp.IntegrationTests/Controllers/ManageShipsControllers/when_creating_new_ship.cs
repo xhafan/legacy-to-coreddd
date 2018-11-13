@@ -4,6 +4,7 @@ using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared.Commands;
 using CoreDddShared.Domain;
+using IntegrationTestsShared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
@@ -55,7 +56,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         }
 
         [Test]
-        public void action_result_is_redirect_to_action_result_with_last_generated_ship_id_parameterer()
+        public void action_result_is_redirect_to_action_result_with_last_created_ship_id_parameterer()
         {
             _actionResult.ShouldBeOfType<RedirectToActionResult>();
             var redirectToActionResult = (RedirectToActionResult) _actionResult;
