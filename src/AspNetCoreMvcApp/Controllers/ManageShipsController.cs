@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using AspNetCoreMvcApp.BusRequestSenders;
 using AspNetCoreMvcApp.Models;
@@ -21,12 +20,12 @@ namespace AspNetCoreMvcApp.Controllers
         public ManageShipsController(
             ICommandExecutor commandExecutor,
             IQueryExecutor queryExecutor,
-            IBusRequestSender bus
+            IBusRequestSender busRequestSender
             )
         {
-            _busRequestSender = bus;
             _queryExecutor = queryExecutor;
             _commandExecutor = commandExecutor;
+            _busRequestSender = busRequestSender;
         }
 
         public async Task<IActionResult> Index()

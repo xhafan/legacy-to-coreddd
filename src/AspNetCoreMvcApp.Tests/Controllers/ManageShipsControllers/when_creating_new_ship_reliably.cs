@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using AspNetCoreMvcApp.BusRequestSenders;
-using AspNetCoreMvcApp.Controllers;
 using CoreDddShared.Commands;
 using FakeItEasy;
 using Microsoft.AspNetCore.Mvc;
