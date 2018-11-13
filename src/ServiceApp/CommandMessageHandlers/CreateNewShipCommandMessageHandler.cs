@@ -4,7 +4,7 @@ using CoreDddShared.Commands;
 using Rebus.Bus;
 using Rebus.Handlers;
 
-namespace ServiceApp.MessageHandlers
+namespace ServiceApp.CommandMessageHandlers
 {
     public class CreateNewShipCommandMessageHandler : IHandleMessages<CreateNewShipCommand>
     {

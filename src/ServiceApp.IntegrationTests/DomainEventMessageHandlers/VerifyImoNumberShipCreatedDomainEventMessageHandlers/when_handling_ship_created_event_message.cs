@@ -6,11 +6,11 @@ using CoreDddShared.Domain;
 using CoreDddShared.Domain.Events;
 using FakeItEasy;
 using NUnit.Framework;
-using ServiceApp.MessageHandlers;
+using ServiceApp.DomainEventMessageHandlers;
 using Shouldly;
 using TestsShared;
 
-namespace ServiceApp.IntegrationTests.MessageHandlers.VerifyImoNumberShipCreatedDomainEventMessageHandlers
+namespace ServiceApp.IntegrationTests.DomainEventMessageHandlers.VerifyImoNumberShipCreatedDomainEventMessageHandlers
 {
     [TestFixture]
     public class when_handling_ship_created_event_message

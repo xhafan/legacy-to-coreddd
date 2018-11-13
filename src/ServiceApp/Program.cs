@@ -15,7 +15,7 @@ using CoreDddShared.Domain;
 using CoreDddShared.Domain.Events;
 using Rebus.CastleWindsor;
 using Rebus.Config;
-using ServiceApp.MessageHandlers;
+using ServiceApp.DomainEventMessageHandlers;
 
 namespace ServiceApp
 {

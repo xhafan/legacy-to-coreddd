@@ -11,10 +11,10 @@ using IntegrationTestsShared;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Rebus.Bus;
-using ServiceApp.MessageHandlers;
+using ServiceApp.CommandMessageHandlers;
 using Shouldly;
 
-namespace ServiceApp.IntegrationTests.MessageHandlers.CreateNewShipCommandMessageHandlers
+namespace ServiceApp.IntegrationTests.CommandMessageHandlers.CreateNewShipCommandMessageHandlers
 {
     [TestFixture]
     public class when_handling_create_new_ship_command_message
