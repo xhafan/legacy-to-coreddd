@@ -11,7 +11,7 @@ namespace CoreDddShared.Domain
 {
     public class Ship : Entity, IAggregateRoot
     {
-        private readonly ICollection<ShipHistory> _shipHistories = new HashSet<ShipHistory>();
+        private readonly ISet<ShipHistory> _shipHistories = new HashSet<ShipHistory>();
 
         protected Ship() { } // parameterless constructor needed by nhibernate 
                              // to be able to instantiate the entity when loaded from database
