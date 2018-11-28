@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared;
 using CoreDddShared.Domain;
 using CoreDddShared.Domain.Events;
@@ -21,7 +22,7 @@ namespace ServiceApp.IntegrationTests.DomainEventMessageHandlers.VerifyImoNumber
         [SetUp]
         public async Task Context()
         {
-            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
             _p.BeginTransaction();
 
             var imoNumber = "IMO 7564321";

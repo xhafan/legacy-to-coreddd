@@ -1,4 +1,4 @@
-﻿#if NETCOREAPP2_1
+﻿#if NETCOREAPP
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreDdd.Commands;

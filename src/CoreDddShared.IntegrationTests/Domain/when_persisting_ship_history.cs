@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared.Domain;
 using NUnit.Framework;
 using Shouldly;
@@ -19,7 +20,7 @@ namespace CoreDddShared.IntegrationTests.Domain
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
             _p.BeginTransaction();
 
             _newShip = new ShipBuilder().Build();

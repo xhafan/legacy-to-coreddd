@@ -1,6 +1,7 @@
 ﻿#if NET40
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared.Commands;
 using CoreDddShared.Domain;
 using FakeItEasy;
@@ -19,7 +20,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
             _p.BeginTransaction();
 
             var createNewShipCommand = new CreateNewShipCommand

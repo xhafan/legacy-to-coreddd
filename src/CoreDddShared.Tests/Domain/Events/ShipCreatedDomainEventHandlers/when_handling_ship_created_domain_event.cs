@@ -1,4 +1,4 @@
-﻿#if NETCOREAPP2_1 // ShipCreatedDomainEventHandler is only in AspNetCoreMvcApp and not in LegacyWebFormsApp
+﻿#if NETCOREAPP // ShipCreatedDomainEventHandler is only in AspNetCoreMvcApp and not in LegacyWebFormsApp
 using CoreDddShared.Domain.Events;
 using FakeItEasy;
 using NUnit.Framework;

@@ -11,13 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DatabaseBuilder" Version="1.0.10" />
+    <PackageReference Include="DatabaseBuilder" Version="1.0.11" />
     <PackageReference Include="NUnit" Version="3.10.1" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="CoreDdd.Nhibernate.Register.DependencyInjection" Version="3.0.36" />
-    <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.0.36" />
+    <PackageReference Include="CoreDdd.Nhibernate.Register.DependencyInjection" Version="3.1.0" />
+    <PackageReference Include="CoreDdd.Register.DependencyInjection" Version="3.1.0" />
     <PackageReference Include="Scrutor" Version="3.0.1" />
   </ItemGroup>
 

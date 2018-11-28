@@ -1,5 +1,6 @@
 ﻿using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared.Commands;
 using CoreDddShared.Domain;
 using NUnit.Framework;
@@ -17,7 +18,7 @@ namespace CoreDddShared.IntegrationTests.Commands.UpdateShipCommandHandlers
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
             _p.BeginTransaction();
 
             var ship = new ShipBuilder().Build();
@@ -33,7 +34,7 @@ namespace CoreDddShared.IntegrationTests.Commands.UpdateShipCommandHandlers
 #if NET40
             updateShipCommandHandler.Execute(updateShipCommand);
 #endif
-#if NETCOREAPP2_1
+#if NETCOREAPP
             updateShipCommandHandler.ExecuteAsync(updateShipCommand).Wait();
 #endif
 

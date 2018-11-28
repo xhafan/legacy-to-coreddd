@@ -1,4 +1,4 @@
-﻿#if NETCOREAPP2_1 // for AspNetCoreMvcApp; not London style test for LegacyWebFormsApp
+﻿#if NETCOREAPP // for AspNetCoreMvcApp; not London style test for LegacyWebFormsApp
 using System.Reflection;
 using CoreDdd.Domain.Events;
 using CoreDdd.Domain.Repositories;

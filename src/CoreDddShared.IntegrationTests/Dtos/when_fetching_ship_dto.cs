@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared.Domain;
 using CoreDddShared.Dtos;
 using CoreDddShared.Queries;
@@ -20,7 +21,7 @@ namespace CoreDddShared.IntegrationTests.Dtos
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
             _p.BeginTransaction();
 
             _newShip = new ShipBuilder().Build();

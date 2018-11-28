@@ -1,8 +1,9 @@
-﻿#if NETCOREAPP2_1
+﻿#if NETCOREAPP
 using System.Threading.Tasks;
 using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Repositories;
 using CoreDdd.Nhibernate.TestHelpers;
+using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDdd.TestHelpers.DomainEvents;
 using CoreDddShared.Commands;
 using CoreDddShared.Domain;
@@ -26,7 +27,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = domainEvent as IDomainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
 
-            _p = new PersistenceTestHelper(new CoreDddSharedNhibernateConfigurator());
+            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
             _p.BeginTransaction();
 
             var createNewShipCommand = new CreateNewShipCommand
