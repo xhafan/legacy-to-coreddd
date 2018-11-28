@@ -12,7 +12,7 @@ namespace CoreDddShared.IntegrationTests.Domain
     [TestFixture]
     public class when_persisting_ship_history
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private Ship _newShip;
         private Ship _persistedShip;
         private ShipHistory _persistedShipHistory;
@@ -20,16 +20,16 @@ namespace CoreDddShared.IntegrationTests.Domain
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
-            _p.BeginTransaction();
+            _unitOfWork = new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator());
+            _unitOfWork.BeginTransaction();
 
             _newShip = new ShipBuilder().Build();
 
-            _p.Save(_newShip);
+            _unitOfWork.Save(_newShip);
 
-            _p.Clear();
+            _unitOfWork.Clear();
 
-            _persistedShip = _p.Get<Ship>(_newShip.Id);
+            _persistedShip = _unitOfWork.Get<Ship>(_newShip.Id);
             _persistedShipHistory = _persistedShip.ShipHistories.SingleOrDefault();
         }
 
@@ -56,7 +56,7 @@ namespace CoreDddShared.IntegrationTests.Domain
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }

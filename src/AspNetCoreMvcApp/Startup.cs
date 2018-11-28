@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using AspNetCoreMvcApp.BusRequestSenders;
-using CoreDdd.AspNetCore.Middleware;
+using CoreDdd.AspNetCore.Middlewares;
 using CoreDdd.Commands;
 using CoreDdd.Domain.Events;
 using CoreDdd.Nhibernate.Configurations;

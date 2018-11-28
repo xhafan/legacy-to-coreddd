@@ -15,7 +15,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
     [TestFixture]
     public class when_updating_ship
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private ServiceProvider _serviceProvider;
         private IServiceScope _serviceScope;
 
@@ -28,11 +28,11 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
             _serviceProvider = new ServiceProviderHelper().BuildServiceProvider();
             _serviceScope = _serviceProvider.CreateScope();
 
-            _p = new PersistenceTestHelper(_serviceProvider.GetService<NhibernateUnitOfWork>());
-            _p.BeginTransaction();
+            _unitOfWork = _serviceProvider.GetService<NhibernateUnitOfWork>();
+            _unitOfWork.BeginTransaction();
 
             _newShip = new ShipBuilder().Build();
-            _p.Save(_newShip);
+            _unitOfWork.Save(_newShip);
 
             var manageShipsController = new ManageShipsControllerBuilder(_serviceProvider).Build();
 
@@ -44,14 +44,14 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
             };
             _actionResult = await manageShipsController.UpdateShip(updateShipCommand);
 
-            _p.Flush();
-            _p.Clear();
+            _unitOfWork.Flush();
+            _unitOfWork.Clear();
         }
 
         [Test]
         public void ship_is_updated()
         {
-            var updatedShip = _p.UnitOfWork.Session.Get<Ship>(_newShip.Id);
+            var updatedShip = _unitOfWork.Session.Get<Ship>(_newShip.Id);
             updatedShip.Name.ShouldBe("updated ship name");
         }
 
@@ -67,7 +67,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
             _serviceScope.Dispose();
             _serviceProvider.Dispose();
         }

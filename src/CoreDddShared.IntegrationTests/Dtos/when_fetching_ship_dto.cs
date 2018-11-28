@@ -14,21 +14,21 @@ namespace CoreDddShared.IntegrationTests.Dtos
     [TestFixture]
     public class when_fetching_ship_dto
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private Ship _newShip;
         private IEnumerable<ShipDto> _shipDtos;
 
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
-            _p.BeginTransaction();
+            _unitOfWork = new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator());
+            _unitOfWork.BeginTransaction();
 
             _newShip = new ShipBuilder().Build();
-            _p.Save(_newShip);
-            _p.Clear();
+            _unitOfWork.Save(_newShip);
+            _unitOfWork.Clear();
 
-            var queryHandler = new GetAllShipsQueryHandler(_p.UnitOfWork);
+            var queryHandler = new GetAllShipsQueryHandler(_unitOfWork);
 
             _shipDtos = queryHandler.Execute<ShipDto>(new GetAllShipsQuery());
         }
@@ -54,7 +54,7 @@ namespace CoreDddShared.IntegrationTests.Dtos
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }

@@ -12,17 +12,17 @@ namespace CoreDddShared.IntegrationTests.Commands.UpdateShipCommandHandlers
     [TestFixture]
     public class when_updating_new_ship
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private Ship _updatedShip;
 
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
-            _p.BeginTransaction();
+            _unitOfWork = new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator());
+            _unitOfWork.BeginTransaction();
 
             var ship = new ShipBuilder().Build();
-            _p.Save(ship);
+            _unitOfWork.Save(ship);
 
             var updateShipCommand = new UpdateShipCommand
             {
@@ -30,7 +30,7 @@ namespace CoreDddShared.IntegrationTests.Commands.UpdateShipCommandHandlers
                 ShipName = "updated ship name",
                 Tonnage = 34.5m
             };
-            var updateShipCommandHandler = new UpdateShipCommandHandler(new NhibernateRepository<Ship>(_p.UnitOfWork));
+            var updateShipCommandHandler = new UpdateShipCommandHandler(new NhibernateRepository<Ship>(_unitOfWork));
 #if NET40
             updateShipCommandHandler.Execute(updateShipCommand);
 #endif
@@ -38,10 +38,10 @@ namespace CoreDddShared.IntegrationTests.Commands.UpdateShipCommandHandlers
             updateShipCommandHandler.ExecuteAsync(updateShipCommand).Wait();
 #endif
 
-            _p.Flush();
-            _p.Clear();
+            _unitOfWork.Flush();
+            _unitOfWork.Clear();
 
-            _updatedShip = _p.Get<Ship>(ship.Id);
+            _updatedShip = _unitOfWork.Get<Ship>(ship.Id);
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace CoreDddShared.IntegrationTests.Commands.UpdateShipCommandHandlers
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }

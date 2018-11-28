@@ -17,7 +17,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
     [TestFixture]
     public class when_viewing_index
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private ServiceProvider _serviceProvider;
         private IServiceScope _serviceScope;
 
@@ -30,11 +30,11 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
             _serviceProvider = new ServiceProviderHelper().BuildServiceProvider();
             _serviceScope = _serviceProvider.CreateScope();
 
-            _p = new PersistenceTestHelper(_serviceProvider.GetService<NhibernateUnitOfWork>());
-            _p.BeginTransaction();
+            _unitOfWork = _serviceProvider.GetService<NhibernateUnitOfWork>();
+            _unitOfWork.BeginTransaction();
 
             _newShip = new ShipBuilder().Build();
-            _p.Save(_newShip);
+            _unitOfWork.Save(_newShip);
 
             var manageShipsController = new ManageShipsControllerBuilder(_serviceProvider).Build();
 
@@ -60,7 +60,7 @@ namespace AspNetCoreMvcApp.IntegrationTests.Controllers.ManageShipsControllers
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
             _serviceScope.Dispose();
             _serviceProvider.Dispose();
         }

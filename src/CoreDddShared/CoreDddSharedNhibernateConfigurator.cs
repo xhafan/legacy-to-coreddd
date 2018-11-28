@@ -8,7 +8,7 @@ using HibernatingRhinos.Profiler.Appender.NHibernate;
 
 namespace CoreDddShared
 {
-    public class CoreDddSharedNhibernateConfigurator : NhibernateConfigurator
+    public class CoreDddSharedNhibernateConfigurator : BaseNhibernateConfigurator
     {
 #if DEBUG
         public CoreDddSharedNhibernateConfigurator()

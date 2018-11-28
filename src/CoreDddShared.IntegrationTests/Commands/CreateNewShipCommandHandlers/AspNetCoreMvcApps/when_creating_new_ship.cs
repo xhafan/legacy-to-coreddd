@@ -16,7 +16,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
     [TestFixture]
     public class when_creating_new_ship
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private Ship _persistedShip;
         private int _createdShipId;
         private IDomainEvent _raisedDomainEvent;
@@ -27,8 +27,8 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
             var domainEventHandlerFactory = new FakeDomainEventHandlerFactory(domainEvent => _raisedDomainEvent = domainEvent as IDomainEvent);
             DomainEvents.Initialize(domainEventHandlerFactory);
 
-            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
-            _p.BeginTransaction();
+            _unitOfWork = new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator());
+            _unitOfWork.BeginTransaction();
 
             var createNewShipCommand = new CreateNewShipCommand
             {
@@ -36,14 +36,14 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
                 Tonnage = 23.45678m,
                 ImoNumber = "IMO 12345"
             };
-            var createNewShipCommandHandler = new CreateNewShipCommandHandler(new NhibernateRepository<Ship>(_p.UnitOfWork));
+            var createNewShipCommandHandler = new CreateNewShipCommandHandler(new NhibernateRepository<Ship>(_unitOfWork));
             createNewShipCommandHandler.CommandExecuted += args => _createdShipId = (int) args.Args;
             await createNewShipCommandHandler.ExecuteAsync(createNewShipCommand);
 
-            _p.Flush();
-            _p.Clear();
+            _unitOfWork.Flush();
+            _unitOfWork.Clear();
 
-            _persistedShip = _p.Get<Ship>(_createdShipId);
+            _persistedShip = _unitOfWork.Get<Ship>(_createdShipId);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.A
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }

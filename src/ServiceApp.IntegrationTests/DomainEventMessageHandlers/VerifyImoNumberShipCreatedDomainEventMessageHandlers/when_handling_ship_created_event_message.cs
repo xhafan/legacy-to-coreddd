@@ -16,37 +16,37 @@ namespace ServiceApp.IntegrationTests.DomainEventMessageHandlers.VerifyImoNumber
     [TestFixture]
     public class when_handling_ship_created_event_message
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private Ship _newShip;
 
         [SetUp]
         public async Task Context()
         {
-            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
-            _p.BeginTransaction();
+            _unitOfWork = new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator());
+            _unitOfWork.BeginTransaction();
 
             var imoNumber = "IMO 7564321";
             _newShip = new ShipBuilder().WithImoNumber(imoNumber).Build();
-            _p.Save(_newShip);
+            _unitOfWork.Save(_newShip);
 
             var internationalMaritimeOrganizationVerifier = A.Fake<IInternationalMaritimeOrganizationVerifier>();
             A.CallTo(() => internationalMaritimeOrganizationVerifier.IsImoNumberValid(imoNumber)).Returns(true);
 
             var shipCreatedDomainEventMessageHandler = new VerifyImoNumberShipCreatedDomainEventMessageHandler(
-                new NhibernateRepository<Ship>(_p.UnitOfWork),
+                new NhibernateRepository<Ship>(_unitOfWork),
                 internationalMaritimeOrganizationVerifier
                 );
 
             await shipCreatedDomainEventMessageHandler.Handle(new ShipCreatedDomainEventMessage {ShipId = _newShip.Id});
 
-            _p.Flush();
-            _p.Clear();
+            _unitOfWork.Flush();
+            _unitOfWork.Clear();
         }
 
         [Test]
         public void imo_number_is_verified_and_is_valid()
         {
-            var ship = _p.Get<Ship>(_newShip.Id);
+            var ship = _unitOfWork.Get<Ship>(_newShip.Id);
             ship.HasImoNumberBeenVerified.ShouldBeTrue();
             ship.IsImoNumberValid.ShouldBeTrue();
         }
@@ -54,7 +54,7 @@ namespace ServiceApp.IntegrationTests.DomainEventMessageHandlers.VerifyImoNumber
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }

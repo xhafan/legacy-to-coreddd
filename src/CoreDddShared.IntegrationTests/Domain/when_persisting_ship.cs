@@ -10,23 +10,23 @@ namespace CoreDddShared.IntegrationTests.Domain
     [TestFixture]
     public class when_persisting_ship
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private Ship _newShip;
         private Ship _persistedShip;
 
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
-            _p.BeginTransaction();
+            _unitOfWork = new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator());
+            _unitOfWork.BeginTransaction();
 
             _newShip = new ShipBuilder().Build();
 
-            _p.Save(_newShip); // save entity into DB -> send INSERT SQL statement into DB
+            _unitOfWork.Save(_newShip); // save entity into DB -> send INSERT SQL statement into DB
 
-            _p.Clear(); // clear NHibernate session so the next SQL SELECT would not load cached entity version, but would query the database
+            _unitOfWork.Clear(); // clear NHibernate session so the next SQL SELECT would not load cached entity version, but would query the database
 
-            _persistedShip = _p.Get<Ship>(_newShip.Id);
+            _persistedShip = _unitOfWork.Get<Ship>(_newShip.Id);
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace CoreDddShared.IntegrationTests.Domain
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }

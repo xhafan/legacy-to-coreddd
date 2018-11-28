@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreDdd.Commands;
 using CoreDdd.Domain.Events;
-using CoreDdd.Nhibernate.TestHelpers;
 using CoreDdd.Nhibernate.UnitOfWorks;
 using CoreDddShared.Commands;
 using FakeItEasy;
@@ -19,7 +18,7 @@ namespace ServiceApp.IntegrationTests.CommandMessageHandlers.CreateNewShipComman
     [TestFixture]
     public class when_handling_create_new_ship_command_message
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private ServiceProvider _serviceProvider;
         private IBus _bus;
 
@@ -29,8 +28,8 @@ namespace ServiceApp.IntegrationTests.CommandMessageHandlers.CreateNewShipComman
             _serviceProvider = new ServiceProviderHelper().BuildServiceProvider();
             DomainEvents.Initialize(_serviceProvider.GetService<IDomainEventHandlerFactory>());
 
-            _p = new PersistenceTestHelper(_serviceProvider.GetService<NhibernateUnitOfWork>());
-            _p.BeginTransaction();
+            _unitOfWork = _serviceProvider.GetService<NhibernateUnitOfWork>();
+            _unitOfWork.BeginTransaction();
 
             var createNewShipCommand = new CreateNewShipCommand
             {
@@ -44,8 +43,8 @@ namespace ServiceApp.IntegrationTests.CommandMessageHandlers.CreateNewShipComman
 
             await createNewShipCommandMessageHandler.Handle(createNewShipCommand);
 
-            _p.Flush();
-            _p.Clear();
+            _unitOfWork.Flush();
+            _unitOfWork.Clear();
         }
 
         [Test]
@@ -66,7 +65,7 @@ namespace ServiceApp.IntegrationTests.CommandMessageHandlers.CreateNewShipComman
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }

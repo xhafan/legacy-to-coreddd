@@ -13,15 +13,15 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
     [TestFixture]
     public class when_creating_new_ship
     {
-        private PersistenceTestHelper _p;
+        private NhibernateUnitOfWork _unitOfWork;
         private Ship _persistedShip;
         private int _createdShipId;
 
         [SetUp]
         public void Context()
         {
-            _p = new PersistenceTestHelper(new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator()));
-            _p.BeginTransaction();
+            _unitOfWork = new NhibernateUnitOfWork(new CoreDddSharedNhibernateConfigurator());
+            _unitOfWork.BeginTransaction();
 
             var createNewShipCommand = new CreateNewShipCommand
             {
@@ -34,16 +34,16 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
             A.CallTo(() => internationalMaritimeOrganizationVerifier.IsImoNumberValid("IMO 765432")).Returns(true);
 
             var createNewShipCommandHandler = new CreateNewShipCommandHandler(
-                new NhibernateRepository<Ship>(_p.UnitOfWork),
+                new NhibernateRepository<Ship>(_unitOfWork),
                 internationalMaritimeOrganizationVerifier
                 );
             createNewShipCommandHandler.CommandExecuted += args => _createdShipId = (int) args.Args;
             createNewShipCommandHandler.Execute(createNewShipCommand);
 
-            _p.Flush();
-            _p.Clear();
+            _unitOfWork.Flush();
+            _unitOfWork.Clear();
 
-            _persistedShip = _p.Get<Ship>(_createdShipId);
+            _persistedShip = _unitOfWork.Get<Ship>(_createdShipId);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
         [Test]
         public void imo_number_is_verified_and_is_valid()
         {
-            var ship = _p.Get<Ship>(_persistedShip.Id);
+            var ship = _unitOfWork.Get<Ship>(_persistedShip.Id);
             ship.HasImoNumberBeenVerified.ShouldBeTrue();
             ship.IsImoNumberValid.ShouldBeTrue();
         }
@@ -66,7 +66,7 @@ namespace CoreDddShared.IntegrationTests.Commands.CreateNewShipCommandHandlers.L
         [TearDown]
         public void TearDown()
         {
-            _p.Rollback();
+            _unitOfWork.Rollback();
         }
     }
 }
