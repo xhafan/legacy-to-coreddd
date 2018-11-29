@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
@@ -59,7 +60,10 @@ namespace LegacyWebFormsApp
                     .LifestyleSingleton()
             );
 
-            UnitOfWorkHttpModule.Initialize(_windsorContainer.Resolve<IUnitOfWorkFactory>());
+            UnitOfWorkHttpModule.Initialize(
+                _windsorContainer.Resolve<IUnitOfWorkFactory>(),
+                isolationLevel: System.Data.IsolationLevel.ReadCommitted
+            );
 
             DomainEvents.Initialize(
                 _windsorContainer.Resolve<IDomainEventHandlerFactory>(),
