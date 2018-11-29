@@ -59,7 +59,12 @@ namespace LegacyWebFormsApp
                     .LifestyleSingleton()
             );
 
-            TransactionScopeUnitOfWorkHttpModule.Initialize(_windsorContainer.Resolve<IUnitOfWorkFactory>());
+            UnitOfWorkHttpModule.Initialize(_windsorContainer.Resolve<IUnitOfWorkFactory>());
+
+            DomainEvents.Initialize(
+                _windsorContainer.Resolve<IDomainEventHandlerFactory>(),
+                isDelayedDomainEventHandlingEnabled: true
+            );
 
             // register command handlers
             _windsorContainer.Register(
@@ -78,8 +83,6 @@ namespace LegacyWebFormsApp
                     .WithService.FirstInterface()
                     .Configure(x => x.LifestyleTransient())
             );
-
-            DomainEvents.Initialize(_windsorContainer.Resolve<IDomainEventHandlerFactory>());
 
             _windsorContainer.Register(
                 Component
