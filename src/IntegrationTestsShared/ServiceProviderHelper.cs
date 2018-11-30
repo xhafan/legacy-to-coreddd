@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0
+﻿#if NETSTANDARD
 using CoreDdd.Commands;
 using CoreDdd.Nhibernate.Register.DependencyInjection;
 using CoreDdd.Queries;

@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0
+﻿#if NETSTANDARD
 using System.Threading.Tasks;
 #endif
 
@@ -6,7 +6,7 @@ namespace CoreDddShared.Domain
 {
     public interface IInternationalMaritimeOrganizationVerifier
     {
-#if NETSTANDARD2_0
+#if NETSTANDARD
         Task<bool> IsImoNumberValid(string imoNumber);
 #endif
 #if NET40

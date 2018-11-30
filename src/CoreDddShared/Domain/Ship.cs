@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CoreDdd.Domain;
-#if NETSTANDARD2_0
+#if NETSTANDARD
 using System;
 using System.Threading.Tasks;
 using CoreDdd.Domain.Events;
@@ -37,7 +37,7 @@ namespace CoreDddShared.Domain
             _shipHistories.Add(new ShipHistory(newShipName, tonnage));
         }
 
-#if NETSTANDARD2_0 // AspNetCoreMvcApp
+#if NETSTANDARD // AspNetCoreMvcApp
         public virtual void OnCreationCompleted()
         {
             if (Id == default(int)) throw new Exception("Id has not been assigned yet - entity creation has not been completed yet");

@@ -2,7 +2,7 @@
 using System.Threading;
 #endif 
 
-#if NETSTANDARD2_0
+#if NETSTANDARD
 using System.Threading;
 using System.Threading.Tasks;
 #endif
@@ -11,7 +11,7 @@ namespace CoreDddShared.Domain
 {
     public class InternationalMaritimeOrganizationVerifier : IInternationalMaritimeOrganizationVerifier
     {
-#if NETSTANDARD2_0
+#if NETSTANDARD
 #pragma warning disable 1998
         public async Task<bool> IsImoNumberValid(string imoNumber)
 #pragma warning restore 1998

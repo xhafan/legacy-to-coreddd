@@ -23,7 +23,7 @@ namespace CoreDddShared.Commands
         }
 #endif
 
-#if NETSTANDARD2_0
+#if NETSTANDARD
         // async ExecuteAsync for ASP.NET Core MVC app - .NET 4.5+ and .NET Core
         public override async Task ExecuteAsync(UpdateShipCommand command)
         {

@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0 // AspNetCoreMvcApp
+﻿#if NETSTANDARD // AspNetCoreMvcApp
 using CoreDdd.Commands;
 using CoreDdd.Domain.Repositories;
 using CoreDddShared.Domain;

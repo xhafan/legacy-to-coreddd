@@ -23,8 +23,7 @@ namespace CoreDddShared.IntegrationTests.Domain
             _newShip = new ShipBuilder().Build();
 
             _unitOfWork.Save(_newShip); // save entity into DB -> send INSERT SQL statement into DB
-
-            _unitOfWork.Clear(); // clear NHibernate session so the next SQL SELECT would not load cached entity version, but would query the database
+            _unitOfWork.Clear(); // clear NHibernate session so the following SQL SELECT would not load the cached entity version from the session, but would query the database
 
             _persistedShip = _unitOfWork.Get<Ship>(_newShip.Id);
         }

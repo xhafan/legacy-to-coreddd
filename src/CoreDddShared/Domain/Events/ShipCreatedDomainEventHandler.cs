@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0 // ShipCreatedDomainEventHandler will only work in AspNetCoreMvcApp and not in LegacyWebFormsApp
+﻿#if NETSTANDARD // ShipCreatedDomainEventHandler will only work in AspNetCoreMvcApp and not in LegacyWebFormsApp
 using CoreDdd.Domain.Events;
 using Rebus.Bus.Advanced;
 
